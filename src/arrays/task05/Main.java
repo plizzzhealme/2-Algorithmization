@@ -1,4 +1,4 @@
-package arrays.task01;
+package arrays.task05;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -14,7 +14,7 @@ public class Main {
         Random random = new Random();
 
         for (int i = 0; i < arrayLength; i++) {
-            a[i] = random.nextInt(bound);
+            a[i] = random.nextInt(bound * 2) - bound;
         }
 
         System.out.println("Initial array:");
@@ -24,18 +24,14 @@ public class Main {
         }
 
         System.out.println();
-        System.out.println("Enter K");
 
-        int k = in.nextInt();
-        int sum = 0;
+        System.out.println("Numbers matching a[i] > i");
 
         for (int i = 0; i < arrayLength; i++) {
-            if (a[i] % k == 0) {
-                sum += a[i];
+            if (a[i] > i) {
+                System.out.print(a[i] + " ");
             }
         }
 
-        System.out.println("Sum of multiples of K:");
-        System.out.println(sum);
     }
 }
