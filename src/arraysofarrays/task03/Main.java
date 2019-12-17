@@ -1,4 +1,4 @@
-package arraysofarrays.task01;
+package arraysofarrays.task03;
 
 import static cleaner.Cleaner.*;
 
@@ -15,16 +15,20 @@ public class Main {
 
         print("Initial matrix");
         print(matrix);
-        print("Odd columns with first element bigger than the last one:");
+        print("Enter row number");
 
-        for (int i = 0; i < columnsNumber; i += 2) {
-            if (matrix[0][i] > matrix[rowsNumber - 1][i]) {
-                for (int j = 0; j < rowsNumber; j++) {
-                    System.out.printf("%4d", matrix[j][i]);
-                }
+        int k = getIntFromUser();
 
-                System.out.println();
-            }
+        print("Row #" + k + ":");
+        print(matrix[k - 1]);
+
+        print("Enter column number");
+
+        int p = getIntFromUser();
+
+        print("Column #" + p + ":");
+        for (int i = 0; i < rowsNumber; i++) {
+            System.out.printf("%4d", matrix[i][p - 1]);
         }
     }
 }

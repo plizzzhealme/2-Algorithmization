@@ -45,7 +45,7 @@ public class Cleaner {
         return array;
     }
 
-    public static int[][] generateIntegersMatrix(int rowsNumber, int columnsNumber) {
+    public static int[][] generateMatrix(int rowsNumber, int columnsNumber) {
         int[][] matrix = new int[rowsNumber][];
 
         for (int i = 0; i < rowsNumber; i++) {
@@ -53,6 +53,10 @@ public class Cleaner {
         }
 
         return matrix;
+    }
+
+    public static int[][] generateSquareMatrix(int size) {
+        return generateMatrix(size, size);
     }
 
     /*

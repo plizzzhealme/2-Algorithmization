@@ -7,7 +7,7 @@ public class Main {
         print("Enter matrix size");
 
         int size = getIntFromUser();
-        int[][] matrix = generateIntegersMatrix(size, size);
+        int[][] matrix = generateSquareMatrix(size);
 
         print("Initial matrix");
         print(matrix);
