@@ -89,6 +89,12 @@ public class Cleaner {
         }
     }
 
+    public static void print(double[][] matrix) {
+        for (double[] doubles : matrix) {
+            print(doubles);
+        }
+    }
+
     /*
     SCANNERS
      */
