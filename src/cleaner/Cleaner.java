@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 public class Cleaner {
     private static final int BOUND = 13;
-    private static final String DOUBLE_OUTPUT_FORMAT = "%.2f ";
+    private static final String DOUBLE_OUTPUT_FORMAT = "%7.2f";
+    private static final String INT_OUTPUT_FORMAT = "%4d";
 
     /*
     GENERATORS
@@ -44,21 +45,31 @@ public class Cleaner {
         return array;
     }
 
+    public static int[][] generateIntegersMatrix(int rowsNumber, int columnsNumber) {
+        int[][] matrix = new int[rowsNumber][];
+
+        for (int i = 0; i < rowsNumber; i++) {
+            matrix[i] = generateIntegersArray(columnsNumber);
+        }
+
+        return matrix;
+    }
+
     /*
     PRINTS
      */
 
     public static void print(int[] array) {
         for (int value : array) {
-            System.out.print(value + " ");
+            System.out.printf(INT_OUTPUT_FORMAT, value);
         }
 
         System.out.println();
     }
 
     public static void print(double[] array) {
-        for (double v : array) {
-            System.out.printf(DOUBLE_OUTPUT_FORMAT, v);
+        for (double value : array) {
+            System.out.printf(DOUBLE_OUTPUT_FORMAT, value);
         }
 
         System.out.println();
@@ -66,6 +77,12 @@ public class Cleaner {
 
     public static void print(String s) {
         System.out.println(s);
+    }
+
+    public static void print(int[][] matrix) {
+        for (int[] ints : matrix) {
+            print(ints);
+        }
     }
 
     /*
