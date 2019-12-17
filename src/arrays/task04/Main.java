@@ -9,18 +9,18 @@ public class Main {
 
         Scanner in = new Scanner(System.in);
         int arrayLength = in.nextInt();
-        double[] a = new double[arrayLength];
+        double[] array = new double[arrayLength];
         int bound = 42;
         Random random = new Random();
 
         for (int i = 0; i < arrayLength; i++) {
-            a[i] = random.nextDouble() * bound * 2 - bound;
+            array[i] = random.nextDouble() * bound * 2 - bound;
         }
 
         System.out.println("Initial array:");
 
         for (int i = 0; i < arrayLength; i++) {
-            System.out.printf("%.2f ", a[i]);
+            System.out.printf("%.2f ", array[i]);
         }
 
         System.out.println();
@@ -29,21 +29,21 @@ public class Main {
         int maxIndex = 0;
 
         for (int i = 0; i < arrayLength; i++) {
-            if (a[i] < a[minIndex]) {
+            if (array[i] < array[minIndex]) {
                 minIndex = i;
-            } else if (a[i] > a[maxIndex]) {
+            } else if (array[i] > array[maxIndex]) {
                 maxIndex = i;
             }
         }
 
-        double temp = a[minIndex];
-        a[minIndex] = a[maxIndex];
-        a[maxIndex] = temp;
+        double temp = array[minIndex];
+        array[minIndex] = array[maxIndex];
+        array[maxIndex] = temp;
 
         System.out.println("Final array:");
 
         for (int i = 0; i < arrayLength; i++) {
-            System.out.printf("%.2f ", a[i]);
+            System.out.printf("%.2f ", array[i]);
         }
     }
 }

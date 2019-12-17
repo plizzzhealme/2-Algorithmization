@@ -9,18 +9,18 @@ public class Main {
 
         Scanner in = new Scanner(System.in);
         int arrayLength = in.nextInt();
-        double[] a = new double[arrayLength];
+        double[] array = new double[arrayLength];
         int bound = 42;
         Random random = new Random();
 
         for (int i = 0; i < arrayLength; i++) {
-            a[i] = random.nextDouble() * bound * 2 - bound;
+            array[i] = random.nextDouble() * bound * 2 - bound;
         }
 
         System.out.println("Initial array:");
 
         for (int i = 0; i < arrayLength; i++) {
-            System.out.printf("%.2f ", a[i]);
+            System.out.printf("%.2f ", array[i]);
         }
 
         System.out.println();
@@ -47,11 +47,10 @@ public class Main {
 
         for (int i = 0; i < arrayLength; i++) {
             if (primeTags[i]) {
-                sum += a[i];
+                sum += array[i];
             }
         }
 
         System.out.printf("Prime indexes sum = %.2f", sum);
-
     }
 }

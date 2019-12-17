@@ -9,32 +9,32 @@ public class Main {
 
         Scanner in = new Scanner(System.in);
         int arrayLength = in.nextInt();
-        int[] a = new int[arrayLength];
+        int[] array = new int[arrayLength];
         int bound = 42;
         Random random = new Random();
 
         for (int i = 0; i < arrayLength; i++) {
-            a[i] = random.nextInt(bound * 2) - bound;
+            array[i] = random.nextInt(bound * 2) - bound;
         }
 
         System.out.println("Initial array:");
 
         for (int i = 0; i < arrayLength; i++) {
-            System.out.print(a[i] + " ");
+            System.out.print(array[i] + " ");
         }
 
         System.out.println();
 
-        int min = a[0];
+        int min = array[0];
 
         for (int i = 1; i < arrayLength; i++) {
-            min = Math.min(min, a[i]);
+            min = Math.min(min, array[i]);
         }
 
         int minCount = 0;
 
         for (int i = 0; i < arrayLength; i++) {
-            if (a[i] == min) {
+            if (array[i] == min) {
                 minCount++;
             }
         }
@@ -43,8 +43,8 @@ public class Main {
         int[] finalArray = new int[finalArrayLength];
 
         for (int i = 0, j = 0; i < arrayLength; i++) {
-            if (a[i] != min) {
-                finalArray[j] = a[i];
+            if (array[i] != min) {
+                finalArray[j] = array[i];
                 j++;
             }
         }

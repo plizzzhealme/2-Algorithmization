@@ -9,23 +9,23 @@ public class Main {
 
         Scanner in = new Scanner(System.in);
         int arrayLength = in.nextInt();
-        int[] a = new int[arrayLength];
-        int bound = 10;
+        int[] array = new int[arrayLength];
+        int bound = 5;
         Random random = new Random();
 
         for (int i = 0; i < arrayLength; i++) {
-            a[i] = random.nextInt(bound * 2) - bound;
+            array[i] = random.nextInt(bound * 2) - bound;
         }
 
         System.out.println("Initial array:");
 
         for (int i = 0; i < arrayLength; i++) {
-            System.out.print(a[i] + " ");
+            System.out.print(array[i] + " ");
         }
 
         System.out.println();
 
-        int mostFrequentNumber = a[0];
+        int mostFrequentNumber = array[0];
         int maxFrequency = 1;
         int currentFrequency;
 
@@ -33,16 +33,14 @@ public class Main {
             currentFrequency = 0;
 
             for (int j = i; j < arrayLength; j++) {
-                if (a[i] == a[j]) {
+                if (array[i] == array[j]) {
                     currentFrequency++;
                 }
             }
 
-            if (currentFrequency > maxFrequency) {
+            if (currentFrequency >= maxFrequency) {
                 maxFrequency = currentFrequency;
-                mostFrequentNumber = a[i];
-            } else if (currentFrequency == maxFrequency) {
-                mostFrequentNumber = Math.min(mostFrequentNumber, a[i]);
+                mostFrequentNumber = Math.min(mostFrequentNumber, array[i]);
             }
         }
 

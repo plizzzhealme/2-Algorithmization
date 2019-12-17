@@ -10,26 +10,26 @@ public class Main {
         Scanner in = new Scanner(System.in);
         int halfLength = in.nextInt();
         int arrayLength = halfLength * 2;
-        double[] a = new double[arrayLength];
+        double[] array = new double[arrayLength];
         int bound = 42;
         Random random = new Random();
 
         for (int i = 0; i < arrayLength; i++) {
-            a[i] = random.nextDouble() * bound * 2 - bound;
+            array[i] = random.nextDouble() * bound * 2 - bound;
         }
 
         System.out.println("Initial array:");
 
         for (int i = 0; i < arrayLength; i++) {
-            System.out.printf("%.2f ", a[i]);
+            System.out.printf("%.2f ", array[i]);
         }
 
         System.out.println();
 
-        double maxPairSum = a[0] + a[arrayLength - 1];
+        double maxPairSum = array[0] + array[arrayLength - 1];
 
         for (int i = 1; i < halfLength; i++) {
-            double sum = a[i] + a[arrayLength - 1 - i];
+            double sum = array[i] + array[arrayLength - 1 - i];
             maxPairSum = Math.max(maxPairSum, sum);
         }
 

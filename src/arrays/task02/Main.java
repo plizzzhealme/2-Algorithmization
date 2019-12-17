@@ -9,18 +9,18 @@ public class Main {
 
         Scanner in = new Scanner(System.in);
         int arrayLength = in.nextInt();
-        double[] a = new double[arrayLength];
+        double[] array = new double[arrayLength];
         int bound = 42;
         Random random = new Random();
 
         for (int i = 0; i < arrayLength; i++) {
-            a[i] = random.nextDouble() * bound * 2 - bound;
+            array[i] = random.nextDouble() * bound * 2 - bound;
         }
 
         System.out.println("Initial array:");
 
         for (int i = 0; i < arrayLength; i++) {
-            System.out.printf("%.2f ", a[i]);
+            System.out.printf("%.2f ", array[i]);
         }
 
         System.out.println();
@@ -30,8 +30,8 @@ public class Main {
         int replacementCount = 0;
 
         for (int i = 0; i < arrayLength; i++) {
-            if (a[i] > z) {
-                a[i] = z;
+            if (array[i] > z) {
+                array[i] = z;
                 replacementCount++;
             }
         }
@@ -40,7 +40,7 @@ public class Main {
         System.out.println("Final array:");
 
         for (int i = 0; i < arrayLength; i++) {
-            System.out.printf("%.2f ", a[i]);
+            System.out.printf("%.2f ", array[i]);
         }
     }
 }

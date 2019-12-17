@@ -9,27 +9,27 @@ public class Main {
 
         Scanner in = new Scanner(System.in);
         int arrayLength = in.nextInt();
-        int[] a = new int[arrayLength];
+        int[] array = new int[arrayLength];
         int bound = 42;
         Random random = new Random();
 
         for (int i = 0; i < arrayLength; i++) {
-            a[i] = random.nextInt(bound * 2) - bound;
+            array[i] = random.nextInt(bound * 2) - bound;
         }
 
         System.out.println("Initial array:");
 
         for (int i = 0; i < arrayLength; i++) {
-            System.out.print(a[i] + " ");
+            System.out.print(array[i] + " ");
         }
 
         System.out.println();
 
-        System.out.println("Numbers matching a[i] > i");
+        System.out.println("Numbers matching a[i] > i:");
 
         for (int i = 0; i < arrayLength; i++) {
-            if (a[i] > i) {
-                System.out.print(a[i] + " ");
+            if (array[i] > i) {
+                System.out.print(array[i] + " ");
             }
         }
 

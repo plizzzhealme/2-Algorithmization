@@ -9,18 +9,18 @@ public class Main {
 
         Scanner in = new Scanner(System.in);
         int arrayLength = in.nextInt();
-        double[] a = new double[arrayLength];
+        double[] array = new double[arrayLength];
         int bound = 42;
         Random random = new Random();
 
         for (int i = 0; i < arrayLength; i++) {
-            a[i] = random.nextDouble() * bound * 2 - bound;
+            array[i] = random.nextDouble() * bound * 2 - bound;
         }
 
         System.out.print("Initial array:");
 
         for (int i = 0; i < arrayLength; i++) {
-            System.out.printf("%.2f ", a[i]);
+            System.out.printf("%.2f ", array[i]);
         }
 
         System.out.println();
@@ -30,9 +30,9 @@ public class Main {
         int positiveCount = 0;
 
         for (int i = 0; i < arrayLength; i++) {
-            if (a[i] < 0) {
+            if (array[i] < 0) {
                 negativeCount++;
-            } else if (a[i] > 0) {
+            } else if (array[i] > 0) {
                 positiveCount++;
             } else {
                 zeroCount++;
