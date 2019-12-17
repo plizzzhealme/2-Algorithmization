@@ -30,7 +30,6 @@ public class Main {
 
         for (int i = 1; i < halfLength; i++) {
             double sum = a[i] + a[arrayLength - 1 - i];
-            System.out.println(sum);
             maxPairSum = Math.max(maxPairSum, sum);
         }
 
