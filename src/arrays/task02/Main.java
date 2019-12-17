@@ -1,46 +1,30 @@
 package arrays.task02;
 
-import java.util.Random;
-import java.util.Scanner;
+import static cleaner.Cleaner.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Enter array size");
+        print("Enter array length");
 
-        Scanner in = new Scanner(System.in);
-        int arrayLength = in.nextInt();
-        double[] array = new double[arrayLength];
-        int bound = 42;
-        Random random = new Random();
+        int length = getIntFromUser();
+        double[] array = generateRealNumbersArray(length);
 
-        for (int i = 0; i < arrayLength; i++) {
-            array[i] = random.nextDouble() * bound * 2 - bound;
-        }
+        print("Initial array:");
+        print(array);
+        print("Enter Z");
 
-        System.out.println("Initial array:");
-
-        for (int i = 0; i < arrayLength; i++) {
-            System.out.printf("%.2f ", array[i]);
-        }
-
-        System.out.println();
-        System.out.println("Enter Z");
-
-        double z = in.nextDouble();
+        double z = getDoubleFromUser();
         int replacementCount = 0;
 
-        for (int i = 0; i < arrayLength; i++) {
+        for (int i = 0; i < length; i++) {
             if (array[i] > z) {
                 array[i] = z;
                 replacementCount++;
             }
         }
 
-        System.out.println(replacementCount + " numbers have been replaced by Z = " + z);
-        System.out.println("Final array:");
-
-        for (int i = 0; i < arrayLength; i++) {
-            System.out.printf("%.2f ", array[i]);
-        }
+        print(replacementCount + " numbers have been replaced by Z = " + z);
+        print("Final array:");
+        print(array);
     }
 }

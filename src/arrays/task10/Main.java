@@ -1,33 +1,20 @@
 package arrays.task10;
 
-import java.util.Random;
-import java.util.Scanner;
+import static cleaner.Cleaner.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Enter array length");
+        print("Enter array length");
 
-        Scanner in = new Scanner(System.in);
-        int arrayLength = in.nextInt();
-        int[] array = new int[arrayLength];
-        int bound = 10;
-        Random random = new Random();
+        int length = getIntFromUser();
+        int[] array = generateIntegersArray(length);
 
-        for (int i = 0; i < arrayLength; i++) {
-            array[i] = random.nextInt(bound * 2) - bound;
-        }
+        print("Initial array:");
+        print(array);
 
-        System.out.println("Initial array:");
+        int subArrayLength = length / 2;
 
-        for (int i = 0; i < arrayLength; i++) {
-            System.out.print(array[i] + " ");
-        }
-
-        System.out.println();
-
-        int subArrayLength = arrayLength / 2;
-
-        if (arrayLength % 2 == 1) {
+        if (length % 2 == 1) {
             subArrayLength++;
         }
 
@@ -35,14 +22,11 @@ public class Main {
             array[i] = array[i * 2];
         }
 
-        for (int i = subArrayLength; i < arrayLength; i++) {
+        for (int i = subArrayLength; i < length; i++) {
             array[i] = 0;
         }
 
-        System.out.println("Final array:");
-
-        for (int i = 0; i < arrayLength; i++) {
-            System.out.print(array[i] + " ");
-        }
+        print("Final array:");
+        print(array);
     }
 }

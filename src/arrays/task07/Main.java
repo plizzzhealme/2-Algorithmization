@@ -1,35 +1,22 @@
 package arrays.task07;
 
-import java.util.Random;
-import java.util.Scanner;
+import static cleaner.Cleaner.*;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Enter half of an array size");
+        print("Enter half of an array length");
 
-        Scanner in = new Scanner(System.in);
-        int halfLength = in.nextInt();
-        int arrayLength = halfLength * 2;
-        double[] array = new double[arrayLength];
-        int bound = 42;
-        Random random = new Random();
+        int halfLength = getIntFromUser();
+        int length = halfLength * 2;
+        double[] array = generateRealNumbersArray(length);
 
-        for (int i = 0; i < arrayLength; i++) {
-            array[i] = random.nextDouble() * bound * 2 - bound;
-        }
+        print("Initial array:");
+        print(array);
 
-        System.out.println("Initial array:");
-
-        for (int i = 0; i < arrayLength; i++) {
-            System.out.printf("%.2f ", array[i]);
-        }
-
-        System.out.println();
-
-        double maxPairSum = array[0] + array[arrayLength - 1];
+        double maxPairSum = array[0] + array[length - 1];
 
         for (int i = 1; i < halfLength; i++) {
-            double sum = array[i] + array[arrayLength - 1 - i];
+            double sum = array[i] + array[length - 1 - i];
             maxPairSum = Math.max(maxPairSum, sum);
         }
 
