@@ -45,11 +45,11 @@ public class Cleaner {
         return array;
     }
 
-    public static int[][] generateMatrix(int rowsNumber, int columnsNumber) {
-        int[][] matrix = new int[rowsNumber][];
+    public static int[][] generateMatrix(int height, int width) {
+        int[][] matrix = new int[height][];
 
-        for (int i = 0; i < rowsNumber; i++) {
-            matrix[i] = generateIntegersArray(columnsNumber);
+        for (int i = 0; i < height; i++) {
+            matrix[i] = generateIntegersArray(width);
         }
 
         return matrix;

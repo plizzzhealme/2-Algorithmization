@@ -9,7 +9,7 @@ public class Main {
         int size = getIntFromUser();
         int[][] matrix = generateSquareMatrix(size);
 
-        print("Initial matrix");
+        print("Initial matrix:");
         print(matrix);
         print("Main diagonal:");
 

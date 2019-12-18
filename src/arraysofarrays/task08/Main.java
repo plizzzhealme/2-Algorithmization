@@ -4,26 +4,26 @@ import static cleaner.Cleaner.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter the number of rows");
+        print("Enter matrix height");
 
-        int rowsNumber = getIntFromUser();
+        int height = getIntFromUser();
 
-        print("Enter the number of columns");
+        print("Enter matrix width");
 
-        int columnsNumber = getIntFromUser();
-        int[][] matrix = generateMatrix(rowsNumber, columnsNumber);
+        int width = getIntFromUser();
+        int[][] matrix = generateMatrix(height, width);
 
-        print("Initial matrix");
+        print("Initial matrix:");
         print(matrix);
-        print("Enter column number from 1 to " + columnsNumber);
+        print("Enter column number to swap");
 
         int m = getIntFromUser();
 
-        print("Enter another column number from 1 to " + columnsNumber);
+        print("Enter another column number to swap");
 
         int n = getIntFromUser();
 
-        for (int i = 0; i < rowsNumber; i++) {
+        for (int i = 0; i < height; i++) {
             int temp = matrix[i][m - 1];
             matrix[i][m - 1] = matrix[i][n - 1];
             matrix[i][n - 1] = temp;

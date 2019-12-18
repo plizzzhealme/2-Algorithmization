@@ -10,9 +10,9 @@ public class Main {
         int halfSize = getIntFromUser();
         int size = halfSize * 2;
         int[][] matrix = new int[size][size];
-        int lastOddRowIndex = size - 1;
+        int lastOddRow = size - 1;
 
-        for (int i = 0; i < lastOddRowIndex; i += 2) {
+        for (int i = 0; i < lastOddRow; i += 2) {
             for (int j = 0; j < size; j++) {
                 matrix[i][j] = j + 1;
                 matrix[i + 1][j] = size - j;

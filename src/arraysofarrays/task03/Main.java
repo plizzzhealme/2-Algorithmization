@@ -4,16 +4,16 @@ import static cleaner.Cleaner.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter the number of rows");
+        print("Enter matrix height");
 
-        int rowsNumber = getIntFromUser();
+        int height = getIntFromUser();
 
-        print("Enter the number of columns");
+        print("Enter matrix width");
 
-        int columnsNumber = getIntFromUser();
-        int[][] matrix = generateMatrix(rowsNumber, columnsNumber);
+        int width = getIntFromUser();
+        int[][] matrix = generateMatrix(height, width);
 
-        print("Initial matrix");
+        print("Initial matrix:");
         print(matrix);
         print("Enter row number");
 
@@ -27,7 +27,8 @@ public class Main {
         int p = getIntFromUser();
 
         print("Column #" + p + ":");
-        for (int i = 0; i < rowsNumber; i++) {
+
+        for (int i = 0; i < height; i++) {
             System.out.printf("%4d", matrix[i][p - 1]);
         }
     }

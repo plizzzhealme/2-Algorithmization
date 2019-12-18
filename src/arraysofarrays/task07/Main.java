@@ -10,18 +10,18 @@ public class Main {
         int halfSize = getIntFromUser();
         int size = halfSize * 2;
         double[][] matrix = new double[size][size];
-        int positiveCount = 0;
+        int positiveElementsCount = 0;
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 matrix[i][j] = Math.sin(((i + 1.) * (i + 1) - (j + 1) * (j + 1)) / size);
                 if (matrix[i][j] > 0) {
-                    positiveCount++;
+                    positiveElementsCount++;
                 }
             }
         }
 
         print(matrix);
-        print("The matrix contains " + positiveCount + " positive elements");
+        print("The matrix contains " + positiveElementsCount + " positive elements");
     }
 }

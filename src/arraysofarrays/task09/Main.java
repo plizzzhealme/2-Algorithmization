@@ -9,19 +9,19 @@ public class Main {
     private static final int BOUND = 13;
 
     public static void main(String[] args) {
-        print("Enter the number of rows");
+        print("Enter matrix height");
 
-        int rowsNumber = getIntFromUser();
+        int height = getIntFromUser();
 
-        print("Enter the number of columns");
+        print("Enter matrix width");
 
-        int columnsNumber = getIntFromUser();
+        int width = getIntFromUser();
 
-        int[][] matrix = new int[rowsNumber][columnsNumber];
+        int[][] matrix = new int[height][width];
         Random random = new Random();
 
-        for (int i = 0; i < rowsNumber; i++) {
-            for (int j = 0; j < columnsNumber; j++) {
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
                 matrix[i][j] = random.nextInt(BOUND);
             }
         }
@@ -29,25 +29,25 @@ public class Main {
         print("Initial matrix:");
         print(matrix);
 
-        int[] sums = new int[columnsNumber];
+        int[] columnsSums = new int[width];
 
-        for (int i = 0; i < columnsNumber; i++) {
-            for (int j = 0; j < rowsNumber; j++) {
-                sums[i] += matrix[j][i];
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                columnsSums[i] += matrix[j][i];
             }
         }
 
         print("Columns sums:");
-        print(sums);
+        print(columnsSums);
 
-        int maxColumnIndex = 0;
+        int maxColumnSumIndex = 0;
 
-        for (int i = 1; i < columnsNumber; i++) {
-            if (sums[i] > sums[maxColumnIndex]) {
-                maxColumnIndex = i;
+        for (int i = 1; i < width; i++) {
+            if (columnsSums[i] > columnsSums[maxColumnSumIndex]) {
+                maxColumnSumIndex = i;
             }
         }
 
-        print("The largest sum in the " + (maxColumnIndex + 1) + " column");
+        print("The largest sum is in the " + (maxColumnSumIndex + 1) + " column");
     }
 }
