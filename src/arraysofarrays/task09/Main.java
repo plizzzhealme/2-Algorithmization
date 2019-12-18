@@ -6,6 +6,8 @@ import static cleaner.Cleaner.getIntFromUser;
 import static cleaner.Cleaner.print;
 
 public class Main {
+    private static final int BOUND = 13;
+
     public static void main(String[] args) {
         print("Enter the number of rows");
 
@@ -17,11 +19,10 @@ public class Main {
 
         int[][] matrix = new int[rowsNumber][columnsNumber];
         Random random = new Random();
-        int bound = 13;
 
         for (int i = 0; i < rowsNumber; i++) {
             for (int j = 0; j < columnsNumber; j++) {
-                matrix[i][j] = random.nextInt(bound);
+                matrix[i][j] = random.nextInt(BOUND);
             }
         }
 

@@ -9,9 +9,8 @@ public class Main {
         int size = getIntFromUser();
         int[][] matrix = generateSquareMatrix(size);
 
-        print("Initial matrix");
+        print("Initial matrix:");
         print(matrix);
-
         print("Positive elements of main diagonal:");
 
         for (int i = 0; i < size; i++) {
