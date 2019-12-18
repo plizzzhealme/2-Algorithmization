@@ -1,4 +1,4 @@
-package arraysofarrays.task12;
+package arraysofarrays.task13;
 
 import static cleaner.Cleaner.*;
 
@@ -19,40 +19,40 @@ public class Main {
         /*
         Bubble sort algorithm
          */
-        for (int i = 0; i < height; i++) {
+        for (int i = 0; i < width; i++) {
             boolean isSorted = false;
 
             while (!isSorted) {
                 isSorted = true;
 
-                for (int j = 0; j < width - 1; j++) {
-                    if (matrix[i][j] > matrix[i][j + 1]) {
-                        int temp = matrix[i][j];
-                        matrix[i][j] = matrix[i][j + 1];
-                        matrix[i][j + 1] = temp;
+                for (int j = 0; j < height - 1; j++) {
+                    if (matrix[j][i] > matrix[j + 1][i]) {
+                        int temp = matrix[j][i];
+                        matrix[j][i] = matrix[j + 1][i];
+                        matrix[j + 1][i] = temp;
                         isSorted = false;
                     }
                 }
             }
         }
 
-        print("Matrix with rows sorted in ascending order:");
+        print("Matrix with columns sorted in ascending order:");
         print(matrix);
 
-        int halfWidth = width / 2;
+        int halfHeight = height / 2;
 
         /*
         Just swap elements to sort in reverse order
          */
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < halfWidth; j++) {
-                int temp = matrix[i][j];
-                matrix[i][j] = matrix[i][width - 1 - j];
-                matrix[i][width - 1 - j] = temp;
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < halfHeight; j++) {
+                int temp = matrix[j][i];
+                matrix[j][i] = matrix[height - 1 - j][i];
+                matrix[height - 1 - j][i] = temp;
             }
         }
 
-        print("Matrix with rows sorted in descending order:");
+        print("Matrix with columns sorted in descending order:");
         print(matrix);
     }
 }
