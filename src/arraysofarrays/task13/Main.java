@@ -11,6 +11,7 @@ public class Main {
         print("Enter matrix width");
 
         int width = getIntFromUser();
+
         int[][] matrix = generateMatrix(height, width);
 
         print("Initial matrix:");
@@ -19,17 +20,17 @@ public class Main {
         /*
         Bubble sort algorithm
          */
-        for (int i = 0; i < width; i++) {
+        for (int j = 0; j < width; j++) {
             boolean isSorted = false;
 
             while (!isSorted) {
                 isSorted = true;
 
-                for (int j = 0; j < height - 1; j++) {
-                    if (matrix[j][i] > matrix[j + 1][i]) {
-                        int temp = matrix[j][i];
-                        matrix[j][i] = matrix[j + 1][i];
-                        matrix[j + 1][i] = temp;
+                for (int i = 0; i < height - 1; i++) {
+                    if (matrix[i][j] > matrix[i + 1][j]) {
+                        int temp = matrix[i][j];
+                        matrix[i][j] = matrix[i + 1][j];
+                        matrix[i + 1][j] = temp;
                         isSorted = false;
                     }
                 }
@@ -44,11 +45,11 @@ public class Main {
         /*
         Just swap elements to sort in reverse order
          */
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < halfHeight; j++) {
-                int temp = matrix[j][i];
-                matrix[j][i] = matrix[height - 1 - j][i];
-                matrix[height - 1 - j][i] = temp;
+        for (int j = 0; j < width; j++) {
+            for (int i = 0; i < halfHeight; i++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[height - 1 - i][j];
+                matrix[height - 1 - i][j] = temp;
             }
         }
 
