@@ -36,7 +36,7 @@ public class Main {
         } else if (size % 4 == 0) { //For 4n matrix (double even)
             matrix = generateDoubleEvenMagicSquare(size);
         } else { //For 4n+1 matrix (even)
-            
+
             matrix = new int[1][1];
         }
 
