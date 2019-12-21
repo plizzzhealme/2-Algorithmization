@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Cleaner {
     private static final int BOUND = 13;
     private static final String DOUBLE_OUTPUT_FORMAT = "%7.2f";
-    private static final String INT_OUTPUT_FORMAT = "%4d";
+    private static final String INT_OUTPUT_FORMAT = "%02d ";
 
     /*
     GENERATORS
