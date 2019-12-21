@@ -12,8 +12,9 @@ public class Main {
 
         for (int i = 1; i < length; i++) {
             int elementToInsert = array[i];
-            int insertionIndex = search(array, 0, i, elementToInsert);
+            int insertionIndex = search(array, i, elementToInsert);
 
+            //noinspection ManualArrayCopy
             for (int j = i - 1; j >= insertionIndex; j--) {
                 array[j + 1] = array[j];
             }
@@ -24,9 +25,9 @@ public class Main {
         print(array);
     }
 
-    private static int search(int[] array, int from, int to, int key) {
-        int low = from;
-        int high = to - 1;
+    private static int search(int[] array, int toIndex, int key) {
+        int low = 0;
+        int high = toIndex - 1;
 
         while (low <= high) {
             int middle = (low + high) / 2;
