@@ -17,7 +17,7 @@ public class Cleaner {
         Random random = new Random();
 
         for (int i = 0; i < length; i++) {
-            array[i] = random.nextInt(BOUND);
+            array[i] = random.nextInt(BOUND) + 1;
         }
 
         return array;
