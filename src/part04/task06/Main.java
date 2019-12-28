@@ -1,23 +1,22 @@
 package part04.task06;
 
-import static cleaner.Cleaner.getIntFromUser;
+import static cleaner.Cleaner.getNaturalNumberFromUser;
 import static cleaner.Cleaner.print;
 
 public class Main {
     public static void main(String[] args) {
         print("Enter 3 integers");
-        int a = getIntFromUser();
-        int b = getIntFromUser();
-        int c = getIntFromUser();
-        print(isCoPrime(a, b, c) ? "co-prime" : "not co-prime");
+        int n = 3;
+        int[] numbers = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            numbers[i] = getNaturalNumberFromUser();
+        }
+
+        print(isCoPrime(numbers) ? "co-prime" : "not co-prime");
     }
 
-    private static boolean isCoPrime(int a, int b, int c) {
-        int gcd = part04.task01.Main.calculateGcd(a, b);
-        if (gcd == 1) {
-            return true;
-        }
-        gcd = part04.task01.Main.calculateGcd(gcd, c);
-        return gcd == 1;
+    private static boolean isCoPrime(int[] numbers) {
+        return part04.task02.Main.calculateMultipleGcd(numbers) == 1;
     }
 }

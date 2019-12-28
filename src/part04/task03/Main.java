@@ -10,11 +10,11 @@ public class Main {
         print("Hexagon's square: " + calculateAreaOfHexagon(a));
     }
 
-    private static double calculateAreaOfTriangle(double a) {
+    private static double calculateAreaOfEquilateralTriangle(double a) {
         return Math.sqrt(3.) / 4 * a * a;
     }
 
     private static double calculateAreaOfHexagon(double a) {
-        return 6 * calculateAreaOfTriangle(a);
+        return 6 * calculateAreaOfEquilateralTriangle(a);
     }
 }

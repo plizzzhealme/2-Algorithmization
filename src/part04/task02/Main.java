@@ -14,12 +14,12 @@ public class Main {
             numbers[i] = getNaturalNumberFromUser();
         }
 
-        int gcd = calculateGcd(numbers);
+        int gcd = calculateMultipleGcd(numbers);
         print("Greatest common divisor: " + gcd);
     }
 
 
-    private static int calculateGcd(int[] numbers) {
+    public static int calculateMultipleGcd(int[] numbers) {
         int length = numbers.length;
         int gcd = part04.task01.Main.calculateGcd(numbers[0], numbers[1]);
 

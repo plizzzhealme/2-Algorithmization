@@ -4,10 +4,9 @@ import static cleaner.Cleaner.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter array length");
-
-        int length = getIntFromUser();
-        int[] numbers = generateNaturalNumbersArray(length);
+        print("Enter the number of numbers o_O");
+        int n = getIntFromUser();
+        int[] numbers = generateNaturalNumbersArray(n);
         print("Numbers:");
         print(numbers);
         print("The second largest number is " + findSecondLargestNumber(numbers));
@@ -15,7 +14,7 @@ public class Main {
 
     /*
     returns the second largest number in the array,
-    if all numbers are equal returns their value
+    if all numbers are equal returns this single value
      */
     private static int findSecondLargestNumber(int[] numbers) {
         int n = numbers.length;
