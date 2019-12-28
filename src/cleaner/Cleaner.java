@@ -100,10 +100,34 @@ public class Cleaner {
      */
 
     public static int getIntFromUser() {
-        return new Scanner(System.in).nextInt();
+        Scanner in = new Scanner(System.in);
+
+        while (!in.hasNextInt()) {
+            in.next();
+            print("Enter an integer");
+        }
+        return in.nextInt();
     }
 
-    public static double getDoubleFromUser() {
-        return new Scanner(System.in).nextDouble();
+    public static int getNaturalNumberFromUser() {
+        while (true) {
+            int n = getIntFromUser();
+
+            if (n > 0) {
+                return n;
+            } else {
+                print("Enter a positive integer");
+            }
+        }
+    }
+
+    public static double getRealNumberFromUser() {
+        Scanner in = new Scanner(System.in);
+
+        while (!in.hasNextDouble()) {
+            in.next();
+            print("Enter a real number");
+        }
+        return in.nextDouble();
     }
 }

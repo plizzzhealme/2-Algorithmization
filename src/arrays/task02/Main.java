@@ -13,7 +13,7 @@ public class Main {
         print(array);
         print("Enter Z");
 
-        double z = getDoubleFromUser();
+        double z = getRealNumberFromUser();
         int replacementCount = 0;
 
         for (int i = 0; i < length; i++) {

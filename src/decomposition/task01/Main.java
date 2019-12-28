@@ -1,28 +1,24 @@
 package decomposition.task01;
 
-import static cleaner.Cleaner.getIntFromUser;
+import static cleaner.Cleaner.getNaturalNumberFromUser;
 import static cleaner.Cleaner.print;
 
 public class Main {
     public static void main(String[] args) {
         print("Enter 2 integers");
-        int a = getIntFromUser();
-        int b = getIntFromUser();
+        int a = getNaturalNumberFromUser();
+        int b = getNaturalNumberFromUser();
         int gcd = calculateGcd(a, b);
-        int lcm = calculateLcm(a, b);
+        int lcm = calculateLcm(gcd, a, b);
         print("Greatest common divisor: " + gcd);
         print("Less common multiple: " + lcm);
     }
 
-    private static int calculateGcd(int a, int b) {
-        if (b == 0) {
-            return a;
-        }
-        return calculateGcd(b, a % b);
+    public static int calculateGcd(int a, int b) {
+        return b == 0 ? a : calculateGcd(b, a % b);
     }
 
-    private static int calculateLcm(int a, int b) {
-        int gcd = calculateGcd(a, b);
-        return a * b / gcd;
+    private static int calculateLcm(int gcd, int a, int b) {
+        return a / gcd * b;
     }
 }
