@@ -26,8 +26,8 @@ public class Main {
     }
 
     private static int compareByNumberOfDigits(int a, int b) {
-        int l1 = part04.task10.Main.calculateLength(a);
-        int l2 = part04.task10.Main.calculateLength(b);
+        int l1 = part04.task10.Main.calculateNumberLength(a);
+        int l2 = part04.task10.Main.calculateNumberLength(b);
         return Integer.compare(l1, l2);
     }
 }

@@ -11,7 +11,7 @@ public class Main {
     }
 
     private static int[] convertNumberToArray(int n) {
-        int length = calculateLength(n);
+        int length = calculateNumberLength(n);
         int[] number = new int[length];
         int remainder = n;
 
@@ -22,7 +22,7 @@ public class Main {
         return number;
     }
 
-    public static int calculateLength(int n) {
+    public static int calculateNumberLength(int n) {
         int[] sizeTable = {9, 99, 999, 9999, 99999, 999999, 9999999,
                 99999999, 999999999, Integer.MAX_VALUE};
 
