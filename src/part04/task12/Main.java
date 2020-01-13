@@ -37,7 +37,7 @@ public class Main {
         return count;
     }
 
-    private static int calculateDigitsSum(int n) {
+    public static int calculateDigitsSum(int n) {
         int sum = 0;
 
         while (n > 0) {
