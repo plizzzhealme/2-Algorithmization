@@ -5,23 +5,19 @@ import static cleaner.Cleaner.*;
 public class Main {
     public static void main(String[] args) {
         print("Enter the number of points");
-
         int n = getNaturalNumberFromUser();
         int[][] points = generateMatrix(2, n);
-
         print("Points:");
 
         for (int i = 0; i < n; i++) {
             System.out.printf("(%d;%d) ", points[0][i], points[1][i]);
         }
         System.out.println();
-
         int[] pair = findPairAtMaxDistance(points);
         int x1 = points[0][pair[0]];
         int x2 = points[0][pair[1]];
         int y1 = points[1][pair[0]];
         int y2 = points[1][pair[1]];
-
         System.out.printf("The max distance is between points (%d;%d) and (%d;%d)", x1, y1, x2, y2);
     }
 
@@ -32,6 +28,9 @@ public class Main {
         return (x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1);
     }
 
+    /*
+    returns indexes of a pair at max distance
+     */
     private static int[] findPairAtMaxDistance(int[][] points) {
         int max1 = 0;
         int max2 = 1;

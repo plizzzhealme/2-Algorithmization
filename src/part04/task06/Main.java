@@ -12,10 +12,12 @@ public class Main {
         for (int i = 0; i < n; i++) {
             numbers[i] = getNaturalNumberFromUser();
         }
-
         print(isCoPrime(numbers) ? "co-prime" : "not co-prime");
     }
 
+    /*
+    use the method from the previous task
+     */
     private static boolean isCoPrime(int[] numbers) {
         return part04.task02.Main.calculateMultipleGcd(numbers) == 1;
     }

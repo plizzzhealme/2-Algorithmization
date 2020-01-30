@@ -8,10 +8,13 @@ public class Main {
         print("Enter positive integer:");
         int n = getNaturalNumberFromUser();
         int count = countSubtraction(n);
-        System.out.printf("You have to subtract %d time%s", count, n < 10 ? "" : "s");
+        System.out.printf("You have to subtract %d time%s", count, count == 1 ? "" : "s");
 
     }
 
+    /*
+    Uses the method from the previous task
+     */
     private static int countSubtraction(int n) {
         int count = 0;
         int remainder = n;

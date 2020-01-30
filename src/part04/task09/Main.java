@@ -10,7 +10,6 @@ public class Main {
         int y = getNaturalNumberFromUser();
         int z = getNaturalNumberFromUser();
         int t = getNaturalNumberFromUser();
-
         double s = calculateArea(x, y, z, t);
 
         if (s == -1) {

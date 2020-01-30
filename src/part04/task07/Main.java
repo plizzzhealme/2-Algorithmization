@@ -15,7 +15,6 @@ public class Main {
             fac *= i;
             sum += fac;
         }
-
         return sum;
     }
 }

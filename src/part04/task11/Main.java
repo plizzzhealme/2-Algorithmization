@@ -6,7 +6,6 @@ import static cleaner.Cleaner.print;
 public class Main {
     public static void main(String[] args) {
         print("Enter 2 numbers");
-
         int a = getNaturalNumberFromUser();
         int b = getNaturalNumberFromUser();
         int compareResult = compareByNumberOfDigits(a, b);
@@ -22,7 +21,6 @@ public class Main {
                 print(a + " has more digits");
                 break;
         }
-
     }
 
     private static int compareByNumberOfDigits(int a, int b) {

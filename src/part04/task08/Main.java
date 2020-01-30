@@ -5,14 +5,11 @@ import static cleaner.Cleaner.*;
 public class Main {
     public static void main(String[] args) {
         print("Enter array length");
-
         int length = getIntFromUser();
         int[] array = generateNaturalNumbersArray(length);
-
         print("Initial array:");
         print(array);
         print("Enter the number of the first element to calculate the sum");
-
         int n = getNaturalNumberFromUser();
         int index = n - 1;
 

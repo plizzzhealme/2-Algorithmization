@@ -22,7 +22,6 @@ public class Main {
         if (n == 1) {
             return numbers[0];
         }
-
         int max = Integer.MIN_VALUE;
         int secondMax = Integer.MIN_VALUE;
 

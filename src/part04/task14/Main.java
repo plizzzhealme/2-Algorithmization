@@ -29,7 +29,6 @@ public class Main {
             sum += remainder % 10;
             remainder /= 10;
         }
-
         return sum;
     }
 

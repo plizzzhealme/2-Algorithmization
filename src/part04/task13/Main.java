@@ -12,11 +12,9 @@ public class Main {
         printTwinPrimes(n);
     }
 
-    /**
-     * Prints twin primes in [n;2n] interval
-     * Wikipedia says, that twin primes except 3 and 5 equal 6n +- 1
-     *
-     * @param n start number
+    /*
+    Prints twin primes in [n;2n] interval
+    Wikipedia says, that twin primes except 3 and 5 equal 6n +- 1
      */
     private static void printTwinPrimes(int n) {
         if (n == 3) {
