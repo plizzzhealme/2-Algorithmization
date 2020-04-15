@@ -1,15 +1,15 @@
 package part04.task05;
 
-import static cleaner.Cleaner.*;
+import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter the number of numbers o_O");
-        int n = getIntFromUser();
-        int[] numbers = generateNaturalNumbersArray(n);
-        print("Numbers:");
+        System.out.println("Enter the number of numbers o_O");
+        int n = getInt();
+        int[] numbers = buildPositiveIntsArray(n);
+        System.out.println("Numbers:");
         print(numbers);
-        print("The second largest number is " + findSecondLargestNumber(numbers));
+        System.out.println("The second largest number is " + findSecondLargestNumber(numbers));
     }
 
     /*

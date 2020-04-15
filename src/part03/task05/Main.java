@@ -1,28 +1,35 @@
 package part03.task05;
 
-import static cleaner.Cleaner.*;
+import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter array length");
-        int length = getIntFromUser();
-        int[] array = generateIntegersArray(length);
-        print("Initial array:");
-        print(array);
+        int length;
+        int[] arr;
+
+        System.out.println("Enter array length");
+        length = getPositiveInt();
+        arr = buildIntsArray(length);
+        System.out.println("Initial array:");
+        print(arr);
+        sort(arr);
+        System.out.println("Sorted array:");
+        print(arr);
+    }
+
+    private static void sort(int[] arr) {
+        int length = arr.length;
 
         for (int i = 1; i < length; i++) {
-            int elementToInsert = array[i];
-            int insertionIndex = search(array, i, elementToInsert);
+            int elementToInsert = arr[i];
+            int insertionIndex = search(arr, i, elementToInsert);
 
             //noinspection ManualArrayCopy
             for (int j = i - 1; j >= insertionIndex; j--) {
-                array[j + 1] = array[j];
+                arr[j + 1] = arr[j];
             }
-            array[insertionIndex] = elementToInsert;
+            arr[insertionIndex] = elementToInsert;
         }
-
-        print("Sorted array:");
-        print(array);
     }
 
     private static int search(int[] array, int toIndex, int key) {

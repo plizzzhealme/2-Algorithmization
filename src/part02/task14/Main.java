@@ -2,66 +2,67 @@ package part02.task14;
 
 import java.util.Random;
 
-import static cleaner.Cleaner.getIntFromUser;
-import static cleaner.Cleaner.print;
+import static interaction.Interaction.getPositiveInt;
+import static interaction.Interaction.print;
 
 public class Main {
+    private static final Random r = new Random();
+
     public static void main(String[] args) {
-        print("Enter matrix height");
+        int height;
+        int width;
+        int[][] matrix;
 
-        int height = getIntFromUser();
-
-        print("Enter matrix width");
-
-        int width = getIntFromUser();
+        System.out.println("Enter matrix height and width");
+        height = getPositiveInt();
+        width = getPositiveInt();
 
         if (height < width) {
-            print("Height can't be less then width");
+            System.out.println("Height can't be less then width");
         } else {
-            int[][] matrix = new int[height][width];
-            Random random = new Random();
-            int halfWidth = width / 2;
-
-            /*
-            The left columns contain more '0' than '1',
-            we immediately fill them with '1' at random
-            */
-            for (int j = 0; j < halfWidth; j++) {
-                int count = 0;
-                while (count <= j) {
-                    int index = random.nextInt(height);
-                    if (matrix[index][j] == 0) {
-                        matrix[index][j] = 1;
-                        count++;
-                    }
-                }
-            }
-
-            /*
-            The right columns contain more '1' than '0',
-            We completely fill them with '1' for the beginning
-            */
-            for (int i = 0; i < height; i++) {
-                for (int j = halfWidth; j < width; j++) {
-                    matrix[i][j] = 1;
-                }
-            }
-
-            /*
-            And then fill with '0' at random
-            */
-            for (int j = halfWidth; j < width; j++) {
-                int count = 0;
-                while (count < height - j - 1) {
-                    int index = random.nextInt(height);
-                    if (matrix[index][j] == 1) {
-                        matrix[index][j] = 0;
-                        count++;
-                    }
-                }
-            }
-
+            matrix = buildMatrix(height, width);
             print(matrix);
+        }
+    }
+
+    private static int[][] buildMatrix(int height, int width) {
+        int[][] matrix = new int[height][width];
+
+        for (int i = 0; i < width; i++) {
+            fillColumn(matrix, i);
+        }
+        return matrix;
+    }
+
+    private static void fillColumn(int[][] matrix, int column) {
+        int height = matrix.length;
+        int count = 0;
+        int maxOneCount = column + 1;
+        int maxZeroCount = height - column - 1;
+        int halfWidth = matrix[0].length / 2;
+
+        if (column < halfWidth) {
+            while (count < maxOneCount) {
+                int index = r.nextInt(height);
+
+                if (matrix[index][column] != 1) {
+                    matrix[index][column] = 1;
+                    count++;
+                }
+            }
+        } else {
+            for (int[] arr : matrix) {
+                arr[column] = 1;
+            }
+
+            while (count < maxZeroCount) {
+                int index = r.nextInt(height);
+
+                if (matrix[index][column] != 0) {
+                    matrix[index][column] = 0;
+                    count++;
+                }
+            }
         }
     }
 }

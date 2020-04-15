@@ -1,19 +1,18 @@
 package part04.task02;
 
-import static cleaner.Cleaner.getNaturalNumberFromUser;
-import static cleaner.Cleaner.print;
+import static interaction.Interaction.getPositiveInt;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter 4 integers");
+        System.out.println("Enter 4 integers");
         int length = 4;
         int[] numbers = new int[4];
 
         for (int i = 0; i < length; i++) {
-            numbers[i] = getNaturalNumberFromUser();
+            numbers[i] = getPositiveInt();
         }
         int gcd = calculateMultipleGcd(numbers);
-        print("Greatest common divisor: " + gcd);
+        System.out.println("Greatest common divisor: " + gcd);
     }
 
     /*

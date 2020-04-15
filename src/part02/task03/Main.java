@@ -1,35 +1,38 @@
 package part02.task03;
 
-import static cleaner.Cleaner.*;
+import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter matrix height");
+        int k;
+        int p;
+        int height;
+        int width;
+        int[][] matrix;
 
-        int height = getIntFromUser();
-
-        print("Enter matrix width");
-
-        int width = getIntFromUser();
-        int[][] matrix = generateMatrix(height, width);
-
-        print("Initial matrix:");
+        System.out.println("Enter matrix height and width");
+        height = getPositiveInt();
+        width = getPositiveInt();
+        matrix = buildIntsMatrix(height, width);
+        System.out.println("Initial matrix:");
         print(matrix);
-        print("Enter row number");
+        System.out.println("Enter row number");
+        k = getPositiveInt();
 
-        int k = getIntFromUser();
+        if (k <= height) {
+            System.out.printf("Row №%d:%n", k);
+            print(matrix[k - 1]);
+        } else {
+            System.out.println("Out of bound");
+        }
+        System.out.println("Enter column number");
+        p = getPositiveInt();
 
-        print("Row #" + k + ":");
-        print(matrix[k - 1]);
-
-        print("Enter column number");
-
-        int p = getIntFromUser();
-
-        print("Column #" + p + ":");
-
-        for (int i = 0; i < height; i++) {
-            System.out.printf("%4d", matrix[i][p - 1]);
+        if (p <= width) {
+            System.out.printf("Column №%d:%n", p);
+            part02.task01.Main.printColumn(matrix, p - 1);
+        } else {
+            System.out.println("Out of bound");
         }
     }
 }

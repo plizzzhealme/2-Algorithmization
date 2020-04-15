@@ -1,14 +1,22 @@
 package part02.task05;
 
-import static cleaner.Cleaner.getIntFromUser;
-import static cleaner.Cleaner.print;
+import static interaction.Interaction.getPositiveInt;
+import static interaction.Interaction.print;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter matrix half size");
+        int halfSize;
+        int size;
+        int[][] matrix;
 
-        int halfSize = getIntFromUser();
-        int size = halfSize * 2;
+        System.out.println("Enter matrix half size");
+        halfSize = getPositiveInt();
+        size = halfSize * 2;
+        matrix = buildMatrix(size);
+        print(matrix);
+    }
+
+    private static int[][] buildMatrix(int size) {
         int[][] matrix = new int[size][size];
 
         for (int i = 0; i < size; i++) {
@@ -16,7 +24,6 @@ public class Main {
                 matrix[i][j] = i + 1;
             }
         }
-
-        print(matrix);
+        return matrix;
     }
 }

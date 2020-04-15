@@ -1,13 +1,12 @@
 package part04.task14;
 
-import static cleaner.Cleaner.getNaturalNumberFromUser;
-import static cleaner.Cleaner.print;
+import static interaction.Interaction.getPositiveInt;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter positive integer");
-        int bound = getNaturalNumberFromUser();
-        print("Armstrong numbers from 1 to " + bound + ":");
+        System.out.println("Enter positive integer");
+        int bound = getPositiveInt();
+        System.out.println("Armstrong numbers from 1 to " + bound + ":");
         printArmstrongNumbers(bound);
     }
 
@@ -16,7 +15,7 @@ public class Main {
             int sum = calculateDigitsSum(i);
             int l = part04.task10.Main.calculateNumberLength(i);
             if (pow(sum, l) == i) {
-                print("" + i);
+                System.out.println("" + i);
             }
         }
     }

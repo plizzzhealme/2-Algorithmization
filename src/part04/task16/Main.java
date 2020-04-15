@@ -1,12 +1,11 @@
 package part04.task16;
 
-import static cleaner.Cleaner.getNaturalNumberFromUser;
-import static cleaner.Cleaner.print;
+import static interaction.Interaction.getPositiveInt;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter number's length");
-        int length = getNaturalNumberFromUser();
+        System.out.println("Enter number's length");
+        int length = getPositiveInt();
         long oddSum = calculateOddSum(length);
         System.out.println("Odd sum: " + oddSum);
         System.out.println("Even sum: " + calculateEvenDigitsSum(oddSum));

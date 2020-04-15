@@ -1,22 +1,19 @@
 package part03.task08;
 
-import static cleaner.Cleaner.*;
+import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter number of fractions");
-        int length = getIntFromUser();
-        int[] p = generateNaturalNumbersArray(length); //nominators
-        int[] q = generateNaturalNumbersArray(length); //denominators
+        System.out.println("Enter number of fractions");
+        int length = getInt();
+        int[] nominators = buildPositiveIntsArray(length);
+        int[] denominators = buildPositiveIntsArray(length);
 
-        print(p);
-        print(q);
+        print(nominators);
+        print(denominators);
+        System.out.println(calcMultipleLcm(denominators));
 
-        int maxDenominator = q[0];
-
-        for (int i = 0; i < length; i++) {
-            maxDenominator = Math.max(q[i], maxDenominator);
-        }
+        int maxDenominator = findMax(denominators);
 
         int lcm = maxDenominator;
         boolean isLcmFound = false;
@@ -25,7 +22,7 @@ public class Main {
             isLcmFound = true;
 
             for (int i = 0; i < length; i++) {
-                if (lcm % q[i] != 0) {
+                if (lcm % denominators[i] != 0) {
                     isLcmFound = false;
                     lcm += maxDenominator;
                 }
@@ -33,19 +30,20 @@ public class Main {
         }
 
         for (int i = 0; i < length; i++) {
-            p[i] = lcm / q[i] * p[i];
+            nominators[i] = lcm / denominators[i] * nominators[i];
+            denominators[i] = lcm;
         }
 
-        print("With common denominator:");
+        System.out.println("With common denominator:");
 
-        for (int i = 0; i < length; i++) {
-            System.out.printf("%7d", p[i]);
+        for (int nominator : nominators) {
+            System.out.printf("%7d", nominator);
         }
 
         System.out.println();
 
-        for (int i = 0; i < length; i++) {
-            System.out.printf("%7d", lcm);
+        for (int denominator : denominators) {
+            System.out.printf("%7d", denominator);
         }
 
         System.out.println();
@@ -56,25 +54,51 @@ public class Main {
             sorted = true;
 
             for (int i = 0; i < length - 1; i++) {
-                if (p[i] > p[i + 1]) {
-                    int temp = p[i];
-                    p[i] = p[i + 1];
-                    p[i + 1] = temp;
+                if (nominators[i] > nominators[i + 1]) {
+                    int temp = nominators[i];
+                    nominators[i] = nominators[i + 1];
+                    nominators[i + 1] = temp;
                     sorted = false;
                 }
             }
         }
 
-        print("Sorted:");
+        System.out.println("Sorted:");
 
         for (int i = 0; i < length; i++) {
-            System.out.printf("%7d", p[i]);
+            System.out.printf("%15d", nominators[i]);
         }
 
         System.out.println();
 
         for (int i = 0; i < length; i++) {
-            System.out.printf("%7d", lcm);
+            System.out.printf("%15d", lcm);
         }
+    }
+
+    private static int calcMultipleLcm(int[] arr) {
+        int lcm = 1;
+
+        for (int value : arr) {
+            lcm = calcLcm(value, lcm);
+        }
+        return lcm;
+    }
+
+    private static int calcLcm(int a, int b) {
+        return a * b / calcGcd(a, b);
+    }
+
+    private static int calcGcd(int a, int b) {
+        return b == 0 ? a : calcGcd(b, a % b);
+    }
+
+    private static int findMax(int[] arr) {
+        int max = arr[0];
+
+        for (int denominator : arr) {
+            max = Math.max(denominator, max);
+        }
+        return max;
     }
 }

@@ -1,40 +1,47 @@
 package part02.task15;
 
-import static cleaner.Cleaner.*;
+import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter matrix height");
+        int max;
+        int height;
+        int width;
+        int[][] matrix;
 
-        int height = getIntFromUser();
-
-        print("Enter matrix width");
-
-        int width = getIntFromUser();
-        int[][] matrix = generateMatrix(height, width);
-
-        print("Initial matrix:");
+        System.out.println("Enter matrix height and width");
+        height = getPositiveInt();
+        width = getPositiveInt();
+        matrix = buildIntsMatrix(height, width);
+        System.out.println("Initial matrix:");
         print(matrix);
+        max = findMax(matrix);
+        System.out.printf("Max = %d%n", max);
+        replace(matrix, max);
+        System.out.println("Final matrix:");
+        print(matrix);
+    }
 
-        int max = matrix[0][0];
+    private static void replace(int[][] matrix, int max) {
+        for (int[] arr : matrix) {
+            int length = arr.length;
 
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                max = Math.max(matrix[i][j], max);
-            }
-        }
-
-        print("The maximum element = " + max);
-
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                if (matrix[i][j] % 2 != 0) {
-                    matrix[i][j] = max;
+            for (int i = 0; i < length; i++) {
+                if (arr[i] % 2 != 0) {
+                    arr[i] = max;
                 }
             }
         }
+    }
 
-        print("Final matrix:");
-        print(matrix);
+    private static int findMax(int[][] matrix) {
+        int max = matrix[0][0];
+
+        for (int[] arr : matrix) {
+            for (int value : arr) {
+                max = Math.max(value, max);
+            }
+        }
+        return max;
     }
 }

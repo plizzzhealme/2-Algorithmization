@@ -1,27 +1,33 @@
 package part01.task01;
 
-import static cleaner.Cleaner.*;
+import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter array length");
+        int[] arr;
+        int length;
+        int k;
+        int sum;
 
-        int length = getIntFromUser();
-        int[] array = generateNaturalNumbersArray(length);
+        System.out.println("Enter array length");
+        length = getPositiveInt();
+        arr = buildPositiveIntsArray(length);
+        System.out.println("Initial array:");
+        print(arr);
+        System.out.println("Enter K");
+        k = getInt();
+        sum = calcMultiplesSum(arr, k);
+        System.out.printf("%d multiples sum = %d", k, sum);
+    }
 
-        print("Initial array:");
-        print(array);
-        print("Enter K");
-
-        int k = getIntFromUser();
+    private static int calcMultiplesSum(int[] arr, int k) {
         int sum = 0;
 
-        for (int i = 0; i < length; i++) {
-            if (array[i] % k == 0) {
-                sum += array[i];
+        for (int value : arr) {
+            if (value % k == 0) {
+                sum += value;
             }
         }
-
-        print("K multiples sum = " + sum);
+        return sum;
     }
 }

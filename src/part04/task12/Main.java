@@ -1,14 +1,14 @@
 package part04.task12;
 
-import static cleaner.Cleaner.getNaturalNumberFromUser;
-import static cleaner.Cleaner.print;
+import static interaction.Interaction.getPositiveInt;
+import static interaction.Interaction.print;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter 2 natural numbers");
-        int k = getNaturalNumberFromUser();
-        int n = getNaturalNumberFromUser();
-        print("Numbers from 1 to " + n + " with one incredible property:");
+        System.out.println("Enter 2 natural numbers");
+        int k = getPositiveInt();
+        int n = getPositiveInt();
+        System.out.println("Numbers from 1 to " + n + " with one incredible property:");
         print(buildThisStupidArray(k, n));
     }
 

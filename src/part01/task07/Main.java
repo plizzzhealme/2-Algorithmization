@@ -1,25 +1,33 @@
 package part01.task07;
 
-import static cleaner.Cleaner.*;
+import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter half of an array length");
+        int halfLength;
+        int length;
+        double[] arr;
+        double maxPairSum;
 
-        int halfLength = getIntFromUser();
-        int length = halfLength * 2;
-        double[] array = generateRealNumbersArray(length);
+        System.out.println("Enter half of an array length");
+        halfLength = getPositiveInt();
+        length = halfLength * 2;
+        arr = buildDoublesArray(length);
+        System.out.println("Initial array:");
+        print(arr);
+        maxPairSum = findMaxPairSum(arr);
+        System.out.printf("Max pair sum = %.2f", maxPairSum);
+    }
 
-        print("Initial array:");
-        print(array);
-
-        double maxPairSum = array[0] + array[length - 1];
+    private static double findMaxPairSum(double[] arr) {
+        int length = arr.length;
+        int halfLength = length / 2;
+        double maxPairSum = arr[0] + arr[length - 1];
 
         for (int i = 1; i < halfLength; i++) {
-            double sum = array[i] + array[length - 1 - i];
+            double sum = arr[i] + arr[length - 1 - i];
             maxPairSum = Math.max(maxPairSum, sum);
         }
-
-        System.out.printf("Max pair sum = %.2f", maxPairSum);
+        return maxPairSum;
     }
 }

@@ -1,12 +1,11 @@
 package part04.task17;
 
-import static cleaner.Cleaner.getNaturalNumberFromUser;
-import static cleaner.Cleaner.print;
+import static interaction.Interaction.getPositiveInt;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter positive integer:");
-        int n = getNaturalNumberFromUser();
+        System.out.println("Enter positive integer:");
+        int n = getPositiveInt();
         int count = countSubtraction(n);
         System.out.printf("You have to subtract %d time%s", count, count == 1 ? "" : "s");
 

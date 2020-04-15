@@ -1,107 +1,147 @@
 package part02.task16;
 
-
-import static cleaner.Cleaner.getIntFromUser;
-import static cleaner.Cleaner.print;
+import static interaction.Interaction.getPositiveInt;
+import static interaction.Interaction.print;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter matrix size");
+        int size;
+        int[][] magicSquare;
+        int option;
 
-        int size = getIntFromUser();
-        int[][] matrix = new int[size][size];
+        System.out.println("Enter magic square size");
+        size = getPositiveInt();
 
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                matrix[i][j] = i * size + j + 1;
+        if (size == 2) {
+            System.out.println("There is no such magic square");
+            return;
+        }
+        option = size % 4;
+
+        switch (option) {
+            case 0:
+                magicSquare = buildDoubleEvenMagicSquare(size);
+                break;
+            case 2:
+                magicSquare = buildEvenMagicSquare(size);
+                break;
+            default:
+                magicSquare = buildOddMagicSquare(size);
+                break;
+        }
+
+        if (isMagic(magicSquare)) {
+            System.out.println("It's a magic!");
+        } else {
+            System.out.println("Building is failed!");
+        }
+        print(magicSquare);
+    }
+
+    //http://www.1728.org/magicsq3.htm
+    public static int[][] buildEvenMagicSquare(int size) {
+        int[][] magicSquare = new int[size][size];
+        int halfSize = size / 2;
+        int peakIndex = halfSize / 2;
+        int[][] miniMagic = buildOddMagicSquare(halfSize);
+
+        for (int i = 0; i < halfSize; i++) {
+            for (int j = 0; j < halfSize; j++) {
+                magicSquare[i][j] = miniMagic[i][j];
+                magicSquare[i + halfSize][j + halfSize] = miniMagic[i][j] + halfSize * halfSize;
+                magicSquare[i][j + halfSize] = miniMagic[i][j] + 2 * halfSize * halfSize;
+                magicSquare[i + halfSize][j] = miniMagic[i][j] + 3 * halfSize * halfSize;
             }
         }
-        print(matrix);
 
-        int i = 0;
-        while (replace(matrix, size)) {
-            //  print(matrix);
-            // print("==========");
-            if (isMagic(matrix)) {
-                i++;
-                print(matrix);
-                print("=====");
+        for (int col = 0; col < peakIndex; col++) {
+            for (int row = 0; row < halfSize; row++) {
+                swap(magicSquare, row, col, row + halfSize, col);
             }
         }
-        print("111");
-        //printMagicSquare(matrix, size, maxNumber, magicSum);
 
-        /*if (size % 2 == 1) { //For 2n+1 matrix (odd)
-            matrix = generateOddMagicSquare(size);
-        } else if (size % 4 == 0) { //For 4n matrix (double even)
-            matrix = generateDoubleEvenMagicSquare(size);
-        } else { //For 4n+1 matrix (even)
-
-            matrix = new int[1][1];
+        for (int col = size - peakIndex + 1; col < size; col++) {
+            for (int row = 0; row < halfSize; row++) {
+                swap(magicSquare, row, col, row + halfSize, col);
+            }
         }
 
-        if (isMagic(matrix)) {
-            print(matrix);
-        }*/
+        swap(magicSquare, peakIndex, 0, peakIndex + halfSize, 0);
+        swap(magicSquare, peakIndex + halfSize, peakIndex, peakIndex, peakIndex);
+        return magicSquare;
     }
 
-    private static boolean replace(int[][] matrix, int size) {
-        int j = size * size - 2;
-
-
-        while (j != -1 && matrix[getRow(j, size)][getCol(j, size)]
-                >= matrix[getRow(j + 1, size)][getCol(j + 1, size)]) {
-            j--;
-        }
-
-        if (j == -1) {
-            return false;
-        }
-
-        int k = size * size - 1;
-
-        while (matrix[getRow(j, size)][getCol(j, size)]
-                >= matrix[getRow(k, size)][getCol(k, size)]) {
-            k--;
-        }
-
-        swapElements(matrix, getRow(j, size), getCol(j, size), getRow(k, size), getCol(k, size));
-
-        int l = j + 1;
-        int r = size * size - 1;
-
-        while (l < r) {
-            swapElements(matrix, getRow(l, size), getCol(l, size), getRow(r, size), getCol(r, size));
-            l++;
-            r--;
-        }
-
-        return true;
-    }
-
-    private static int getRow(int index, int size) {
-        return index / size;
-    }
-
-    private static int getCol(int index, int size) {
-        return index % size;
-    }
-
-    private static void swapElements(int[][] matrix, int i1, int j1, int i2, int j2) {
+    private static void swap(int[][] matrix, int i1, int j1, int i2, int j2) {
         int temp = matrix[i1][j1];
         matrix[i1][j1] = matrix[i2][j2];
         matrix[i2][j2] = temp;
     }
 
-    private static boolean isMagic(final int[][] matrix) {
+    private static int[][] buildOddMagicSquare(int size) {
+        int[][] magicSquare = new int[size][size];
+        int max = size * size;
+        int i = 0;
+        int j = size / 2;
+
+        for (int n = 1; n <= max; n++) {
+            magicSquare[i][j] = n;
+
+            if (j == size - 1 && i == 0) {
+                i++;
+            } else if (i == 0) {
+                i = size - 1;
+                j++;
+            } else if (j == size - 1) {
+                i--;
+                j = 0;
+            } else if (magicSquare[i - 1][j + 1] != 0) {
+                i++;
+            } else {
+                i--;
+                j++;
+            }
+        }
+        return magicSquare;
+    }
+
+    //http://www.1728.org/magicsq2.htm
+    private static int[][] buildDoubleEvenMagicSquare(int size) {
+        int quarterSize = size / 4;
+        int[][] magicSquare = new int[size][size];
+        int min = 1;
+        int max = size * size;
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (i < quarterSize && quarterSize <= j && j < size - quarterSize) {
+                    magicSquare[i][j] = min;
+                } else if (i >= size - quarterSize && quarterSize <= j && j < size - quarterSize) {
+                    magicSquare[i][j] = min;
+                } else if (quarterSize <= i && i < size - quarterSize && j < quarterSize) {
+                    magicSquare[i][j] = min;
+                } else if (quarterSize <= i && i < size - quarterSize && j >= size - quarterSize) {
+                    magicSquare[i][j] = min;
+                } else {
+                    magicSquare[i][j] = max;
+                }
+                min++;
+                max--;
+            }
+        }
+        return magicSquare;
+    }
+
+    private static boolean isMagic(int[][] matrix) {
         int size = matrix.length;
         int magicSum = size * (size * size + 1) / 2;
         int mainDiagonalSum = 0;
         int antidiagonalSum = 0;
+        int rowSum;
+        int columnSum;
 
         for (int i = 0; i < size; i++) {
-            int rowSum = 0;
-            int columnSum = 0;
+            rowSum = 0;
+            columnSum = 0;
             mainDiagonalSum += matrix[i][i];
             antidiagonalSum += matrix[i][size - i - 1];
 
@@ -118,64 +158,6 @@ public class Main {
         if (mainDiagonalSum != magicSum) {
             return false;
         }
-
         return antidiagonalSum == magicSum;
     }
-
-// --Commented out by Inspection START (21.12.2019 04:49):
-//    private static int[][] generateOddMagicSquare(int size) {
-//        int[][] matrix = new int[size][size];
-//        int maxNumber = size * size;
-//        int i = 0;
-//        int j = size / 2;
-//
-//        for (int n = 1; n <= maxNumber; n++) {
-//            matrix[i][j] = n;
-//            if (j == size - 1 && i == 0) {
-//                i++;
-//            } else if (i == 0) {
-//                i = size - 1;
-//                j++;
-//            } else if (j == size - 1) {
-//                i--;
-//                j = 0;
-//            } else if (matrix[i - 1][j + 1] != 0) {
-//                i++;
-//            } else {
-//                i--;
-//                j++;
-//            }
-//        }
-//
-//        return matrix;
-//    }
-// --Commented out by Inspection STOP (21.12.2019 04:49)
-
-// --Commented out by Inspection START (21.12.2019 04:48):
-//    private static int[][] generateDoubleEvenMagicSquare(int size) {
-//        int[][] matrix = new int[size][size];
-//
-//        for (int i = 0; i < size; i++) {
-//            for (int j = 0; j < size; j++) {
-//                matrix[i][j] = i * size + j + 1;
-//            }
-//        }
-//
-//        int halfSize = size / 2;
-//
-//        for (int i = 0; i < halfSize; i++) {
-//            int j = i % 4 == 3 || i % 4 == 0 ? 0 : 1;
-//
-//            while (j < size) {
-//                int temp = matrix[i][j];
-//                matrix[i][j] = matrix[size - 1 - i][size - 1 - j];
-//                matrix[size - 1 - i][size - 1 - j] = temp;
-//                j += j % 2 == 0 ? 3 : 1;
-//            }
-//        }
-//
-//        return matrix;
-//    }
-// --Commented out by Inspection STOP (21.12.2019 04:48)
 }
-

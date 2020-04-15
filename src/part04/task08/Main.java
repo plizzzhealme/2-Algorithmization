@@ -1,22 +1,22 @@
 package part04.task08;
 
-import static cleaner.Cleaner.*;
+import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter array length");
-        int length = getIntFromUser();
-        int[] array = generateNaturalNumbersArray(length);
-        print("Initial array:");
+        System.out.println("Enter array length");
+        int length = getInt();
+        int[] array = buildPositiveIntsArray(length);
+        System.out.println("Initial array:");
         print(array);
-        print("Enter the number of the first element to calculate the sum");
-        int n = getNaturalNumberFromUser();
+        System.out.println("Enter the number of the first element to calculate the sum");
+        int n = getPositiveInt();
         int index = n - 1;
 
         if (checkIndex(array, index)) {
-            print("Sum = " + threeSum(array, index));
+            System.out.println("Sum = " + threeSum(array, index));
         } else {
-            print("Index too large or array too small");
+            System.out.println("Index too large or array too small");
         }
     }
 

@@ -1,19 +1,18 @@
 package part04.task09;
 
-import static cleaner.Cleaner.getNaturalNumberFromUser;
-import static cleaner.Cleaner.print;
+import static interaction.Interaction.getPositiveInt;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter the lengths of the sides");
-        int x = getNaturalNumberFromUser();
-        int y = getNaturalNumberFromUser();
-        int z = getNaturalNumberFromUser();
-        int t = getNaturalNumberFromUser();
+        System.out.println("Enter the lengths of the sides");
+        int x = getPositiveInt();
+        int y = getPositiveInt();
+        int z = getPositiveInt();
+        int t = getPositiveInt();
         double s = calculateArea(x, y, z, t);
 
         if (s == -1) {
-            print("Quadrilateral with given sides doesn't exist");
+            System.out.println("Quadrilateral with given sides doesn't exist");
         } else {
             System.out.printf("S = %.3f", s);
         }

@@ -1,36 +1,47 @@
 package part01.task09;
 
-import static cleaner.Cleaner.*;
+import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter array length");
+        int length;
+        int[] arr;
+        int mostFrequentNumber;
 
-        int length = getIntFromUser();
-        int[] array = generateIntegersArray(length);
+        System.out.println("Enter array length");
+        length = getPositiveInt();
+        arr = buildIntsArray(length);
+        mostFrequentNumber = findMostFrequentNumber(arr);
+        System.out.println("Initial array:");
+        print(arr);
+        System.out.printf("The min of the most frequently occurring numbers is %d", mostFrequentNumber);
+    }
 
-        print("Initial array:");
-        print(array);
-
-        int mostFrequentNumber = array[0];
+    private static int findMostFrequentNumber(int[] arr) {
+        boolean[] isChecked = new boolean[arr.length];
+        int length = arr.length;
+        int mostFrequentNumber = arr[0];
         int maxFrequency = 1;
-        int currentFrequency;
 
         for (int i = 0; i < length; i++) {
-            currentFrequency = 0;
+            if (!isChecked[i]) {
+                int currentFrequency = 0;
 
-            for (int j = i; j < length; j++) {
-                if (array[i] == array[j]) {
-                    currentFrequency++;
+                for (int j = i; j < length; j++) {
+                    if (arr[i] == arr[j]) {
+                        currentFrequency++;
+                        isChecked[j] = true;
+                    }
+                }
+
+                if (currentFrequency > maxFrequency) {
+                    maxFrequency = currentFrequency;
+                    mostFrequentNumber = arr[i];
+                } else if (currentFrequency == maxFrequency) {
+                    mostFrequentNumber = Math.min(mostFrequentNumber, arr[i]);
                 }
             }
-
-            if (currentFrequency >= maxFrequency) {
-                maxFrequency = currentFrequency;
-                mostFrequentNumber = Math.min(mostFrequentNumber, array[i]);
-            }
         }
-
-        print("The minimum of the most frequently occurring numbers is " + mostFrequentNumber);
+        return mostFrequentNumber;
     }
 }

@@ -1,42 +1,49 @@
 package part02.task11;
 
-import java.util.Random;
-
-import static cleaner.Cleaner.print;
+import static interaction.Interaction.getRandomInt;
+import static interaction.Interaction.print;
 
 public class Main {
-    private static final int HEIGHT = 10;
-    private static final int WIDTH = 20;
-    private static final int BOUND = 16;
-    private static final int CHECKING_NUMBER = 5;
-    private static final int MIN_NUMBER_OF_ENTRIES = 3;
-
     public static void main(String[] args) {
-        int[][] matrix = new int[HEIGHT][WIDTH];
-        Random random = new Random();
+        int n = 5;
+        int minFrequency = 3;
+        int height = 10;
+        int width = 20;
+        int[][] matrix = buildMatrix(height, width);
 
-        for (int i = 0; i < HEIGHT; i++) {
-            for (int j = 0; j < WIDTH; j++) {
-                matrix[i][j] = random.nextInt(BOUND);
-            }
-        }
-
-        print("Initial matrix:");
+        System.out.println("Initial matrix:");
         print(matrix);
-        print("Rows with number 5 occurring 3 and more times:");
+        System.out.printf("Rows with number %d occurring %d and more times:%n", n, minFrequency);
+        printRowsNumbers(matrix, n, minFrequency);
+    }
 
-        for (int i = 0; i < HEIGHT; i++) {
-            int checkingNumberCount = 0;
+    private static void printRowsNumbers(int[][] matrix, int n, int minFrequency) {
+        int height = matrix.length;
 
-            for (int j = 0; j < WIDTH; j++) {
-                if (matrix[i][j] == CHECKING_NUMBER) {
-                    checkingNumberCount++;
+        for (int i = 0; i < height; i++) {
+            int count = 0;
+
+            for (int value : matrix[i]) {
+                if (value == n) {
+                    count++;
                 }
             }
 
-            if (checkingNumberCount >= MIN_NUMBER_OF_ENTRIES) {
-                System.out.printf("%4d", i + 1);
+            if (count >= minFrequency) {
+                System.out.println(i + 1);
             }
         }
+    }
+
+    private static int[][] buildMatrix(int height, int width) {
+        int bound = 16;
+        int[][] matrix = new int[height][width];
+
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                matrix[i][j] = getRandomInt(bound);
+            }
+        }
+        return matrix;
     }
 }

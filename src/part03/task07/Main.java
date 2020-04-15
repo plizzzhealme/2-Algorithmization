@@ -2,40 +2,46 @@ package part03.task07;
 
 import java.util.Arrays;
 
-import static cleaner.Cleaner.*;
+import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter 1st sequence length");
+        int length1;
+        int length2;
+        int[] arr1;
+        int[] arr2;
+        int[] indexes;
 
-        int firstLength = getNaturalNumberFromUser();
-        int[] a = generateIntegersArray(firstLength);
+        System.out.println("Enter arrays lengths");
+        length1 = getPositiveInt();
+        length2 = getPositiveInt();
+        arr1 = buildIntsArray(length1);
+        arr2 = buildIntsArray(length2);
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        System.out.println("Initial arrays:");
+        print(arr1);
+        print(arr2);
+        indexes = findInsertIndexes(arr1, arr2);
+        System.out.println("Indexes to insert:");
+        print(indexes);
+    }
 
-        print("Enter 2nd sequence length");
-
-        int secondLength = getNaturalNumberFromUser();
-        int[] b = generateIntegersArray(secondLength);
-
-        Arrays.sort(a);
-        Arrays.sort(b);
-        print("Sequence A:");
-        print(a);
-        print("Sequence B:");
-        print(b);
-
+    private static int[] findInsertIndexes(int[] arr1, int[] arr2) {
+        int length1 = arr1.length;
+        int length2 = arr2.length;
+        int[] indexes = new int[length2];
         int i = 0;
         int j = 0;
-        int[] indexes = new int[secondLength];
 
-        while (j < secondLength) {
-            if (i == firstLength || b[j] < a[i]) {
-                indexes[j] = i + j + 1;
+        while (j < length2) {
+            if (i == length1 || arr2[j] < arr1[i]) {
+                indexes[j] = i + j;
                 j++;
             } else {
                 i++;
             }
         }
-        print("Numbers of places to insert sequence B in a new sequence:");
-        print(indexes);
+        return indexes;
     }
 }

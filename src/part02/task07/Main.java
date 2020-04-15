@@ -1,27 +1,45 @@
 package part02.task07;
 
-import static cleaner.Cleaner.getIntFromUser;
-import static cleaner.Cleaner.print;
+import static interaction.Interaction.getPositiveInt;
+import static interaction.Interaction.print;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter matrix half size");
+        int halfSize;
+        int size;
+        int positiveCount;
+        double[][] matrix;
 
-        int halfSize = getIntFromUser();
-        int size = halfSize * 2;
+        System.out.println("Enter matrix half size");
+        halfSize = getPositiveInt();
+        size = halfSize * 2;
+        matrix = buildMatrix(size);
+        positiveCount = countPositiveElements(matrix);
+        print(matrix);
+        System.out.printf("The matrix contains %d positive elements", positiveCount);
+    }
+
+    private static double[][] buildMatrix(int size) {
         double[][] matrix = new double[size][size];
-        int positiveElementsCount = 0;
 
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 matrix[i][j] = Math.sin(((i + 1.) * (i + 1) - (j + 1) * (j + 1)) / size);
-                if (matrix[i][j] > 0) {
-                    positiveElementsCount++;
+            }
+        }
+        return matrix;
+    }
+
+    private static int countPositiveElements(double[][] matrix) {
+        int positiveCount = 0;
+
+        for (double[] arr : matrix) {
+            for (double value : arr) {
+                if (value > 0) {
+                    positiveCount++;
                 }
             }
         }
-
-        print(matrix);
-        print("The matrix contains " + positiveElementsCount + " positive elements");
+        return positiveCount;
     }
 }

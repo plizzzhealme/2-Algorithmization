@@ -1,27 +1,38 @@
 package part02.task02;
 
-import static cleaner.Cleaner.*;
+import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter matrix size");
+        int size;
+        int[][] matrix;
 
-        int size = getIntFromUser();
-        int[][] matrix = generateSquareMatrix(size);
-
-        print("Initial matrix:");
+        System.out.println("Enter matrix size");
+        size = getPositiveInt();
+        matrix = buildSquareMatrix(size);
+        System.out.println("Initial matrix:");
         print(matrix);
-        print("Main diagonal:");
+        System.out.println("Main diagonal:");
+        printDiagonal(matrix);
+        System.out.println("Antidiagonal:");
+        printAntidiagonal(matrix);
+    }
+
+    private static void printDiagonal(int[][] matrix) {
+        int size = matrix.length;
 
         for (int i = 0; i < size; i++) {
-            System.out.printf("%4d", matrix[i][i]);
+            System.out.printf("%3d ", matrix[i][i]);
         }
-
         System.out.println();
-        print("Antidiagonal:");
+    }
+
+    private static void printAntidiagonal(int[][] matrix) {
+        int size = matrix.length;
 
         for (int i = 0; i < size; i++) {
-            System.out.printf("%4d", matrix[i][size - 1 - i]);
+            System.out.printf("%3d ", matrix[i][size - 1 - i]);
         }
+        System.out.println();
     }
 }

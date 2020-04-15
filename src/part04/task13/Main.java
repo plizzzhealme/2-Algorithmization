@@ -1,14 +1,13 @@
 package part04.task13;
 
-import static cleaner.Cleaner.getNaturalNumberFromUser;
-import static cleaner.Cleaner.print;
+import static interaction.Interaction.getPositiveInt;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter initial number");
-        int n = getNaturalNumberFromUser();
-        print("Your interval is [" + n + ";" + 2 * n + "]");
-        print("Twin primes:");
+        System.out.println("Enter initial number");
+        int n = getPositiveInt();
+        System.out.println("Your interval is [" + n + ";" + 2 * n + "]");
+        System.out.println("Twin primes:");
         printTwinPrimes(n);
     }
 
@@ -18,17 +17,15 @@ public class Main {
      */
     private static void printTwinPrimes(int n) {
         if (n == 3) {
-            print("3 5");
+            System.out.println("3 5");
         } else {
             int low = n + 1;
             low = low % 6 == 0 ? low : (low / 6 + 1) * 6;
             int high = 2 * n - 1;
 
             for (int i = low; i < high; i += 6) {
-                if (isPrime(i - 1)) {
-                    if (isPrime(i + 1)) {
-                        print((i - 1) + " " + (i + 1));
-                    }
+                if (isPrime(i - 1) && isPrime(i + 1)) {
+                    System.out.println((i - 1) + " " + (i + 1));
                 }
             }
         }

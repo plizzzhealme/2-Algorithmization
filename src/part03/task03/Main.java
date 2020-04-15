@@ -1,30 +1,37 @@
 package part03.task03;
 
-import static cleaner.Cleaner.*;
+import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter array length");
-        int length = getIntFromUser();
-        int[] array = generateIntegersArray(length);
-        print("Initial array:");
-        print(array);
+        int length;
+        int[] arr;
+
+        System.out.println("Enter array length");
+        length = getPositiveInt();
+        arr = buildIntsArray(length);
+        System.out.println("Initial array:");
+        print(arr);
+        sort(arr);
+        System.out.println("Sorted array:");
+        print(arr);
+    }
+
+    private static void sort(int[] arr) {
+        int length = arr.length;
+        int temp;
 
         for (int i = 0; i < length - 1; i++) {
             int maxIndex = i;
 
             for (int j = i + 1; j < length; j++) {
-                if (array[j] > array[maxIndex]) {
+                if (arr[j] > arr[maxIndex]) {
                     maxIndex = j;
                 }
             }
-
-            int temp = array[maxIndex];
-            array[maxIndex] = array[i];
-            array[i] = temp;
+            temp = arr[i];
+            arr[i] = arr[maxIndex];
+            arr[maxIndex] = temp;
         }
-
-        print("Sorted array:");
-        print(array);
     }
 }

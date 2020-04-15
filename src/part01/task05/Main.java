@@ -1,21 +1,27 @@
 package part01.task05;
 
-import static cleaner.Cleaner.*;
+import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter array length");
+        int length;
+        int[] arr;
 
-        int length = getIntFromUser();
-        int[] array = generateIntegersArray(length);
+        System.out.println("Enter array length");
+        length = getPositiveInt();
+        arr = buildIntsArray(length);
+        System.out.println("Initial array:");
+        print(arr);
+        System.out.println("Numbers matching a[i] > i:");
+        printMatchingNumbers(arr);
+    }
 
-        print("Initial array:");
-        print(array);
-        print("Numbers matching a[i] > i:");
+    private static void printMatchingNumbers(int[] arr) {
+        int length = arr.length;
 
         for (int i = 0; i < length; i++) {
-            if (array[i] > i) {
-                print(String.valueOf(array[i]));
+            if (arr[i] > i) {
+                System.out.println(arr[i]);
             }
         }
     }

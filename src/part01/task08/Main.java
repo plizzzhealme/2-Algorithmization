@@ -1,41 +1,51 @@
 package part01.task08;
 
-import static cleaner.Cleaner.*;
+import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter array length");
+        int length;
+        int[] arr;
+        int[] result;
 
-        int length = getIntFromUser();
-        int[] array = generateIntegersArray(length);
+        System.out.println("Enter array length");
+        length = getPositiveInt();
+        arr = buildIntsArray(length);
+        System.out.println("Initial array:");
+        print(arr);
+        result = removeMinElements(arr);
+        System.out.println("Final array without minimum elements:");
+        print(result);
+    }
 
-        print("Initial array:");
-        print(array);
+    private static int[] removeMinElements(int[] arr) {
+        int resultLength = 0;
+        int i = 0;
+        int[] result;
+        int min = findMin(arr);
 
-        int min = array[0];
-
-        for (int i = 1; i < length; i++) {
-            min = Math.min(min, array[i]);
-        }
-
-        int finalArrayLength = 0;
-
-        for (int i = 0; i < length; i++) {
-            if (array[i] != min) {
-                finalArrayLength++;
+        for (int value : arr) {
+            if (value != min) {
+                resultLength++;
             }
         }
+        result = new int[resultLength];
 
-        int[] finalArray = new int[finalArrayLength];
-
-        for (int i = 0, j = 0; i < length; i++) {
-            if (array[i] != min) {
-                finalArray[j] = array[i];
-                j++;
+        for (int value : arr) {
+            if (value != min) {
+                result[i] = value;
+                i++;
             }
         }
+        return result;
+    }
 
-        print("Final array without minimum elements:");
-        print(finalArray);
+    private static int findMin(int[] arr) {
+        int min = arr[0];
+
+        for (int value : arr) {
+            min = Math.min(min, value);
+        }
+        return min;
     }
 }

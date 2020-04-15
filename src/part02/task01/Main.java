@@ -1,30 +1,40 @@
 package part02.task01;
 
-import static cleaner.Cleaner.*;
+import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter matrix height");
+        int height;
+        int width;
+        int[][] matrix;
 
-        int height = getIntFromUser();
-
-        print("Enter matrix width");
-
-        int width = getIntFromUser();
-        int[][] matrix = generateMatrix(height, width);
-
-        print("Initial matrix:");
+        System.out.println("Enter matrix height and width");
+        height = getPositiveInt();
+        width = getPositiveInt();
+        matrix = buildIntsMatrix(height, width);
+        System.out.println("Initial matrix:");
         print(matrix);
-        print("Odd columns with first element bigger than the last one:");
+        System.out.println("Odd columns with first element bigger than the last one:");
+        printColumns(matrix);
+    }
 
-        for (int i = 0; i < width; i += 2) {
-            if (matrix[0][i] > matrix[height - 1][i]) {
-                for (int j = 0; j < height; j++) {
-                    System.out.printf("%4d", matrix[j][i]);
-                }
+    private static void printColumns(int[][] matrix) {
+        int height = matrix.length;
+        int width = matrix[0].length;
 
-                System.out.println();
+        for (int col = 0; col < width; col += 2) {
+            if (matrix[0][col] > matrix[height - 1][col]) {
+                printColumn(matrix, col);
             }
+        }
+    }
+
+    public static void printColumn(int[][] matrix, int col) {
+        if (col < matrix.length) {
+            for (int[] arr : matrix) {
+                System.out.printf("%3d ", arr[col]);
+            }
+            System.out.println();
         }
     }
 }

@@ -1,53 +1,49 @@
 package part02.task09;
 
-import java.util.Random;
-
-import static cleaner.Cleaner.getIntFromUser;
-import static cleaner.Cleaner.print;
+import static interaction.Interaction.*;
 
 public class Main {
-    private static final int BOUND = 13;
-
     public static void main(String[] args) {
-        print("Enter matrix height");
+        int maxColumnSumIndex;
+        int height;
+        int width;
+        int[][] matrix;
+        int[] columnsSums;
 
-        int height = getIntFromUser();
-
-        print("Enter matrix width");
-
-        int width = getIntFromUser();
-
-        int[][] matrix = new int[height][width];
-        Random random = new Random();
-
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                matrix[i][j] = random.nextInt(BOUND);
-            }
-        }
-
-        print("Initial matrix:");
+        System.out.println("Enter matrix height and width");
+        height = getPositiveInt();
+        width = getPositiveInt();
+        matrix = buildNotNegativeIntsMatrix(height, width);
+        System.out.println("Initial matrix:");
         print(matrix);
+        columnsSums = calcColumnsSums(matrix);
+        System.out.println("Columns sums:");
+        print(columnsSums);
+        maxColumnSumIndex = findMax(columnsSums);
+        System.out.printf("The largest sum is in the %d column", maxColumnSumIndex + 1);
+    }
 
+    private static int[] calcColumnsSums(int[][] matrix) {
+        int width = matrix[0].length;
         int[] columnsSums = new int[width];
 
         for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
-                columnsSums[i] += matrix[j][i];
+            for (int[] arr : matrix) {
+                columnsSums[i] += arr[i];
             }
         }
+        return columnsSums;
+    }
 
-        print("Columns sums:");
-        print(columnsSums);
+    private static int findMax(int[] arr) {
+        int length = arr.length;
+        int maxIndex = 0;
 
-        int maxColumnSumIndex = 0;
-
-        for (int i = 1; i < width; i++) {
-            if (columnsSums[i] > columnsSums[maxColumnSumIndex]) {
-                maxColumnSumIndex = i;
+        for (int i = 0; i < length; i++) {
+            if (arr[i] > arr[maxIndex]) {
+                maxIndex = i;
             }
         }
-
-        print("The largest sum is in the " + (maxColumnSumIndex + 1) + " column");
+        return maxIndex;
     }
 }

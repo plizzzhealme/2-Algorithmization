@@ -1,13 +1,14 @@
 package part04.task04;
 
-import static cleaner.Cleaner.*;
+import static interaction.Interaction.buildIntsMatrix;
+import static interaction.Interaction.getPositiveInt;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter the number of points");
-        int n = getNaturalNumberFromUser();
-        int[][] points = generateMatrix(2, n);
-        print("Points:");
+        System.out.println("Enter the number of points");
+        int n = getPositiveInt();
+        int[][] points = buildIntsMatrix(2, n);
+        System.out.println("Points:");
 
         for (int i = 0; i < n; i++) {
             System.out.printf("(%d;%d) ", points[0][i], points[1][i]);

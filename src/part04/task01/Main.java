@@ -1,17 +1,16 @@
 package part04.task01;
 
-import static cleaner.Cleaner.getNaturalNumberFromUser;
-import static cleaner.Cleaner.print;
+import static interaction.Interaction.getPositiveInt;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter 2 integers");
-        int a = getNaturalNumberFromUser();
-        int b = getNaturalNumberFromUser();
+        System.out.println("Enter 2 integers");
+        int a = getPositiveInt();
+        int b = getPositiveInt();
         int gcd = calculateGcd(a, b);
         int lcm = calculateLcm(gcd, a, b);
-        print("Greatest common divisor: " + gcd);
-        print("Less common multiple: " + lcm);
+        System.out.println("Greatest common divisor: " + gcd);
+        System.out.println("Less common multiple: " + lcm);
     }
 
     public static int calculateGcd(int a, int b) {

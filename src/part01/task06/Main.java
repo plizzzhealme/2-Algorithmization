@@ -1,43 +1,49 @@
 package part01.task06;
 
-import static cleaner.Cleaner.*;
+import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter array length");
+        int length;
+        double[] arr;
+        double sum;
 
-        int length = getIntFromUser();
-        double[] array = generateRealNumbersArray(length);
+        System.out.println("Enter array length");
+        length = getPositiveInt();
+        arr = buildDoublesArray(length);
+        System.out.println("Initial array:");
+        print(arr);
+        sum = calcPrimeIndexesSum(arr);
+        System.out.printf("Prime indexes sum = %.2f", sum);
+    }
 
-        print("Initial array:");
-        print(array);
-
-        /*
-        Sieve of Eratosthenes algorithm
-         */
-        int firstPrime = 2;
-        boolean[] primeTags = new boolean[length];
-
-        for (int i = firstPrime; i < length; i++) {
-            primeTags[i] = true;
-        }
-
-        for (int i = firstPrime; i * i < length; i++) {
-            if (primeTags[i]) {
-                for (int j = i * i; j < length; j += i) {
-                    primeTags[j] = false;
-                }
-            }
-        }
-
+    private static double calcPrimeIndexesSum(double[] arr) {
+        int length = arr.length;
+        boolean[] isPrime = buildPrimesTable(length);
         double sum = 0;
 
         for (int i = 0; i < length; i++) {
-            if (primeTags[i]) {
-                sum += array[i];
+            if (isPrime[i]) {
+                sum += arr[i];
             }
         }
+        return sum;
+    }
 
-        System.out.printf("Prime indexes sum = %.2f", sum);
+    private static boolean[] buildPrimesTable(int size) {
+        boolean[] isPrime = new boolean[size];
+
+        for (int i = 1; i < size; i++) {
+            isPrime[i] = true;
+        }
+
+        for (int i = 2; i * i <= size; i++) {
+            if (isPrime[i - 1]) {
+                for (int j = i * i; j <= size; j += i) {
+                    isPrime[j - 1] = false;
+                }
+            }
+        }
+        return isPrime;
     }
 }

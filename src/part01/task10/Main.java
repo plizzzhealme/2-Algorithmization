@@ -1,32 +1,28 @@
 package part01.task10;
 
-import static cleaner.Cleaner.*;
+import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter array length");
+        int length;
+        int[] arr;
 
-        int length = getIntFromUser();
-        int[] array = generateIntegersArray(length);
-
-        print("Initial array:");
-        print(array);
-
-        int subArrayLength = length / 2;
-
-        if (length % 2 == 1) {
-            subArrayLength++;
-        }
-
-        for (int i = 1; i < subArrayLength; i++) {
-            array[i] = array[i * 2];
-        }
-
-        for (int i = subArrayLength; i < length; i++) {
-            array[i] = 0;
-        }
-
-        print("Final array:");
-        print(array);
+        System.out.println("Enter array length");
+        length = getPositiveInt();
+        arr = buildIntsArray(length);
+        System.out.println("Initial array:");
+        print(arr);
+        removeEverySecondElement(arr);
+        System.out.println("Final array:");
+        print(arr);
     }
-}
+
+    private static void removeEverySecondElement(int[] arr) {
+        int length = arr.length;
+        int halfLength = length / 2 + length % 2;
+
+        for (int i = 1; i < length; i++) {
+            arr[i] = i < halfLength ? arr[i * 2] : 0;
+        }
+    }
+}  

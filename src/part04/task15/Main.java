@@ -1,15 +1,14 @@
 package part04.task15;
 
-import static cleaner.Cleaner.getNaturalNumberFromUser;
-import static cleaner.Cleaner.print;
+import static interaction.Interaction.getPositiveInt;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter number's length");
-        int length = getNaturalNumberFromUser();
+        System.out.println("Enter number's length");
+        int length = getPositiveInt();
 
         if (length > 9 || length < 1) {
-            print("Empty set");
+            System.out.println("Empty set");
         } else {
             int n = calculateMin(length);
             int[] number = convertNumberToArray(n, length);

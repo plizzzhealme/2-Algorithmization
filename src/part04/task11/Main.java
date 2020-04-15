@@ -1,25 +1,20 @@
 package part04.task11;
 
-import static cleaner.Cleaner.getNaturalNumberFromUser;
-import static cleaner.Cleaner.print;
+import static interaction.Interaction.getPositiveInt;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter 2 numbers");
-        int a = getNaturalNumberFromUser();
-        int b = getNaturalNumberFromUser();
+        System.out.println("Enter 2 numbers");
+        int a = getPositiveInt();
+        int b = getPositiveInt();
         int compareResult = compareByNumberOfDigits(a, b);
 
-        switch (compareResult) {
-            case -1:
-                print(b + " has more digits");
-                break;
-            case 0:
-                print("Both numbers have the same number of digits");
-                break;
-            case 1:
-                print(a + " has more digits");
-                break;
+        if (compareResult == -1) {
+            System.out.println(b + " has more digits");
+        } else if (compareResult == 1) {
+            System.out.println(a + " has more digits");
+        } else {
+            System.out.println("Both numbers have the same number of digits");
         }
     }
 

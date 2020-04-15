@@ -1,18 +1,17 @@
 package part04.task06;
 
-import static cleaner.Cleaner.getNaturalNumberFromUser;
-import static cleaner.Cleaner.print;
+import static interaction.Interaction.getPositiveInt;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter 3 integers");
+        System.out.println("Enter 3 integers");
         int n = 3;
         int[] numbers = new int[n];
 
         for (int i = 0; i < n; i++) {
-            numbers[i] = getNaturalNumberFromUser();
+            numbers[i] = getPositiveInt();
         }
-        print(isCoPrime(numbers) ? "co-prime" : "not co-prime");
+        System.out.println(isCoPrime(numbers) ? "co-prime" : "not co-prime");
     }
 
     /*

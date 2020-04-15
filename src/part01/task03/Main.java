@@ -1,32 +1,36 @@
 package part01.task03;
 
-import static cleaner.Cleaner.*;
+import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter array length");
+        int length;
+        double[] arr;
 
-        int length = getIntFromUser();
-        double[] array = generateRealNumbersArray(length);
+        System.out.println("Enter array length");
+        length = getPositiveInt();
+        arr = buildDoublesArray(length);
+        System.out.println("Initial array:");
+        print(arr);
+        printSignInfo(arr);
+    }
 
-        print("Initial array:");
-        print(array);
-
+    private static void printSignInfo(double[] arr) {
         int negativeCount = 0;
         int zeroCount = 0;
         int positiveCount = 0;
+        String resultFormat = "The array contains %d negative numbers," +
+                              " %d positive numbers, %d zero numbers%n";
 
-        for (int i = 0; i < length; i++) {
-            if (array[i] < 0) {
+        for (double value : arr) {
+            if (value < 0) {
                 negativeCount++;
-            } else if (array[i] > 0) {
+            } else if (value > 0) {
                 positiveCount++;
             } else {
                 zeroCount++;
             }
         }
-
-        print("The array contains " + negativeCount + " negative numbers, " +
-                positiveCount + " positive numbers, " + zeroCount + " zero numbers");
+        System.out.printf(resultFormat, negativeCount, positiveCount, zeroCount);
     }
 }

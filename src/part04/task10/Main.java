@@ -1,12 +1,12 @@
 package part04.task10;
 
-import static cleaner.Cleaner.getNaturalNumberFromUser;
-import static cleaner.Cleaner.print;
+import static interaction.Interaction.getPositiveInt;
+import static interaction.Interaction.print;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter natural number");
-        int n = getNaturalNumberFromUser();
+        System.out.println("Enter natural number");
+        int n = getPositiveInt();
         print(convertNumberToArray(n));
     }
 

@@ -1,35 +1,44 @@
 package part02.task08;
 
-import static cleaner.Cleaner.*;
+import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
-        print("Enter matrix height");
+        int m;
+        int n;
+        int height;
+        int width;
+        int[][] matrix;
 
-        int height = getIntFromUser();
-
-        print("Enter matrix width");
-
-        int width = getIntFromUser();
-        int[][] matrix = generateMatrix(height, width);
-
-        print("Initial matrix:");
+        System.out.println("Enter matrix height and width");
+        height = getPositiveInt();
+        width = getPositiveInt();
+        matrix = buildIntsMatrix(height, width);
+        System.out.println("Initial matrix:");
         print(matrix);
-        print("Enter column number to swap");
+        System.out.println("Enter columns to swap");
+        m = getPositiveInt();
+        n = getPositiveInt();
 
-        int m = getIntFromUser();
-
-        print("Enter another column number to swap");
-
-        int n = getIntFromUser();
-
-        for (int i = 0; i < height; i++) {
-            int temp = matrix[i][m - 1];
-            matrix[i][m - 1] = matrix[i][n - 1];
-            matrix[i][n - 1] = temp;
+        if (m <= width && n <= width) {
+            swapColumns(matrix, m - 1, n - 1);
+        } else {
+            System.out.println("Out of bound");
         }
-
-        print("Final matrix:");
+        System.out.println("Final matrix:");
         print(matrix);
+    }
+
+    private static void swapColumns(int[][] matrix, int m, int n) {
+        int height = matrix.length;
+        int width = matrix[0].length;
+
+        if (m < width && n < width) {
+            for (int i = 0; i < height; i++) {
+                int temp = matrix[i][m];
+                matrix[i][m] = matrix[i][n];
+                matrix[i][n] = temp;
+            }
+        }
     }
 }
