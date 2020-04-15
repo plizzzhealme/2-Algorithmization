@@ -21,6 +21,7 @@ public class Main {
         int length = arr.length;
         int minIndex = 0;
         int maxIndex = 0;
+        double temp;
 
         for (int i = 0; i < length; i++) {
             if (arr[i] < arr[minIndex]) {
@@ -29,12 +30,8 @@ public class Main {
                 maxIndex = i;
             }
         }
-        swap(arr, minIndex, maxIndex);
-    }
-
-    private static void swap(double[] arr, int i, int j) {
-        double temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
+        temp = arr[minIndex];
+        arr[minIndex] = arr[maxIndex];
+        arr[maxIndex] = temp;
     }
 }

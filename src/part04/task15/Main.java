@@ -45,7 +45,8 @@ public class Main {
         int n = 0;
 
         for (int i = 0; i < l; i++) {
-            n += number[i] * Math.pow(10, l - i - 1);
+            int p = l - i - 1;
+            n += number[i] * Math.pow(10, p);
         }
         return n;
     }

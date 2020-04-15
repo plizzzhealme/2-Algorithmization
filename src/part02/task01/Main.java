@@ -30,11 +30,11 @@ public class Main {
     }
 
     public static void printColumn(int[][] matrix, int col) {
-        if (col < matrix.length) {
-            for (int[] arr : matrix) {
-                System.out.printf("%3d ", arr[col]);
+        for (int[] arr : matrix) {
+            if (0 <= col && col < arr.length) {
+                System.out.printf("%4d", arr[col]);
             }
-            System.out.println();
         }
+        System.out.println();
     }
 }

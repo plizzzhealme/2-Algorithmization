@@ -14,7 +14,7 @@ public class Main {
         System.out.println("Initial array:");
         print(arr);
         result = removeMinElements(arr);
-        System.out.println("Final array without minimum elements:");
+        System.out.println("Final array:");
         print(result);
     }
 

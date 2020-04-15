@@ -18,8 +18,8 @@ public class Main {
     }
 
     private static int findMostFrequentNumber(int[] arr) {
-        boolean[] isChecked = new boolean[arr.length];
         int length = arr.length;
+        boolean[] isChecked = new boolean[length];
         int mostFrequentNumber = arr[0];
         int maxFrequency = 1;
 

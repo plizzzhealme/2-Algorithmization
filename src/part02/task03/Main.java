@@ -35,4 +35,18 @@ public class Main {
             System.out.println("Out of bound");
         }
     }
+
+    private static void printColumn(int[][] matrix, int col) {
+        if (0 <= col && col < matrix[0].length) {
+            for (int[] arr : matrix) {
+                System.out.printf("%3d ", arr[col]);
+            }
+        }
+    }
+
+    private static void printRow(int[][] matrix, int row) {
+        if (0 <= row && row < matrix.length) {
+            print(matrix[row]);
+        }
+    }
 }

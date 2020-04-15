@@ -19,8 +19,7 @@ public class Main {
         int negativeCount = 0;
         int zeroCount = 0;
         int positiveCount = 0;
-        String resultFormat = "The array contains %d negative numbers," +
-                              " %d positive numbers, %d zero numbers%n";
+        String pattern = "Negative: %d, positive: %d, zero: %d";
 
         for (double value : arr) {
             if (value < 0) {
@@ -31,6 +30,6 @@ public class Main {
                 zeroCount++;
             }
         }
-        System.out.printf(resultFormat, negativeCount, positiveCount, zeroCount);
+        System.out.printf(pattern, negativeCount, positiveCount, zeroCount);
     }
 }

@@ -72,7 +72,7 @@ public class Interaction {
 
     public static void print(int[] arr) {
         for (int value : arr) {
-            System.out.printf("%3d ", value);
+            System.out.printf("%4d", value);
         }
         System.out.println();
     }
