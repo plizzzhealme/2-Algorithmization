@@ -1,79 +1,66 @@
 package part03.task08;
 
-import static interaction.Interaction.*;
+import static interaction.Interaction.buildPositiveIntsArray;
+import static interaction.Interaction.getPositiveInt;
 
 public class Main {
     public static void main(String[] args) {
+        int length;
+        int[] numerators;
+        int[] denominators;
+
         System.out.println("Enter number of fractions");
-        int length = getInt();
-        int[] nominators = buildPositiveIntsArray(length);
-        int[] denominators = buildPositiveIntsArray(length);
+        length = getPositiveInt();
+        numerators = buildPositiveIntsArray(length);
+        denominators = buildPositiveIntsArray(length);
+        System.out.println("Initial:");
+        printFractions(numerators, denominators);
+        toCommonDenominator(numerators, denominators);
+        System.out.println("With common denominator:");
+        printFractions(numerators, denominators);
+        sort(numerators);
+        System.out.println("Sorted:");
+        printFractions(numerators, denominators);
+    }
 
-        print(nominators);
-        print(denominators);
-        System.out.println(calcMultipleLcm(denominators));
+    private static void toCommonDenominator(int[] numerators, int[] denominators) {
+        int length = numerators.length;
+        int commonDenominator = calcMultipleLcm(denominators);
 
-        int maxDenominator = findMax(denominators);
+        for (int i = 0; i < length; i++) {
+            numerators[i] = numerators[i] * (commonDenominator / denominators[i]);
+            denominators[i] = commonDenominator;
+        }
+    }
 
-        int lcm = maxDenominator;
-        boolean isLcmFound = false;
+    private static void sort(int[] arr) {
+        int length = arr.length;
+        boolean isSorted = false;
 
-        while (!isLcmFound) {
-            isLcmFound = true;
+        while (!isSorted) {
+            isSorted = true;
 
-            for (int i = 0; i < length; i++) {
-                if (lcm % denominators[i] != 0) {
-                    isLcmFound = false;
-                    lcm += maxDenominator;
+            for (int i = 0; i < length - 1; i++) {
+                if (arr[i] > arr[i + 1]) {
+                    int temp = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = temp;
+                    isSorted = false;
                 }
             }
         }
+    }
 
-        for (int i = 0; i < length; i++) {
-            nominators[i] = lcm / denominators[i] * nominators[i];
-            denominators[i] = lcm;
+    private static void printFractions(int[] numerators, int[] denominators) {
+        for (int numerator : numerators) {
+            System.out.printf("%6d", numerator);
         }
-
-        System.out.println("With common denominator:");
-
-        for (int nominator : nominators) {
-            System.out.printf("%7d", nominator);
-        }
-
         System.out.println();
 
         for (int denominator : denominators) {
-            System.out.printf("%7d", denominator);
+            System.out.printf("%6d", denominator);
         }
-
         System.out.println();
-
-        boolean sorted = false;
-
-        while (!sorted) {
-            sorted = true;
-
-            for (int i = 0; i < length - 1; i++) {
-                if (nominators[i] > nominators[i + 1]) {
-                    int temp = nominators[i];
-                    nominators[i] = nominators[i + 1];
-                    nominators[i + 1] = temp;
-                    sorted = false;
-                }
-            }
-        }
-
-        System.out.println("Sorted:");
-
-        for (int i = 0; i < length; i++) {
-            System.out.printf("%15d", nominators[i]);
-        }
-
-        System.out.println();
-
-        for (int i = 0; i < length; i++) {
-            System.out.printf("%15d", lcm);
-        }
     }
 
     private static int calcMultipleLcm(int[] arr) {
@@ -91,14 +78,5 @@ public class Main {
 
     private static int calcGcd(int a, int b) {
         return b == 0 ? a : calcGcd(b, a % b);
-    }
-
-    private static int findMax(int[] arr) {
-        int max = arr[0];
-
-        for (int denominator : arr) {
-            max = Math.max(denominator, max);
-        }
-        return max;
     }
 }

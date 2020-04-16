@@ -19,10 +19,10 @@ public class Main {
 
     private static void sort(int[] arr) {
         int length = arr.length;
-        int temp;
 
         for (int i = 0; i < length - 1; i++) {
             int maxIndex = i;
+            int temp;
 
             for (int j = i + 1; j < length; j++) {
                 if (arr[j] > arr[maxIndex]) {

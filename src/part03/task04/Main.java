@@ -18,20 +18,20 @@ public class Main {
         print(arr);
     }
 
-    private static int sort(int[] array) {
-        int length = array.length;
+    private static int sort(int[] arr) {
+        int length = arr.length;
         int swapCount = 0;
-        boolean sorted = false;
+        boolean isSorted = false;
 
-        while (!sorted) {
-            sorted = true;
+        while (!isSorted) {
+            isSorted = true;
 
             for (int i = 0; i < length - 1; i++) {
-                if (array[i] > array[i + 1]) {
-                    int temp = array[i];
-                    array[i] = array[i + 1];
-                    array[i + 1] = temp;
-                    sorted = false;
+                if (arr[i] > arr[i + 1]) {
+                    int temp = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = temp;
+                    isSorted = false;
                     swapCount++;
                 }
             }
