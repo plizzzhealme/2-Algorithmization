@@ -1,13 +1,10 @@
 package part03.task02;
 
-import java.util.Random;
+import java.util.Arrays;
 
-import static interaction.Interaction.getPositiveInt;
-import static interaction.Interaction.print;
+import static interaction.Interaction.*;
 
 public class Main {
-    private static final Random r = new Random();
-
     public static void main(String[] args) {
         int length1;
         int length2;
@@ -18,8 +15,10 @@ public class Main {
         System.out.println("Enter arrays lengths");
         length1 = getPositiveInt();
         length2 = getPositiveInt();
-        arr1 = buildArray(length1);
-        arr2 = buildArray(length2);
+        arr1 = buildIntsArray(length1);
+        arr2 = buildIntsArray(length2);
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
         System.out.println("Initial arrays:");
         print(arr1);
         print(arr2);
@@ -53,17 +52,6 @@ public class Main {
                 arr[i1 + i2] = arr2[i2];
                 i2++;
             }
-        }
-        return arr;
-    }
-
-    private static int[] buildArray(int length) {
-        int bound = 13;
-        int[] arr = new int[length];
-        arr[0] = r.nextInt(bound);
-
-        for (int i = 1; i < length; i++) {
-            arr[i] = arr[i - 1] + r.nextInt(bound);
         }
         return arr;
     }
