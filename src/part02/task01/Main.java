@@ -19,21 +19,16 @@ public class Main {
     }
 
     private static void printColumns(int[][] matrix) {
-        int height = matrix.length;
         int width = matrix[0].length;
 
         for (int col = 0; col < width; col += 2) {
-            if (matrix[0][col] > matrix[height - 1][col]) {
-                printColumn(matrix, col);
-            }
+            printColumn(matrix, col);
         }
     }
 
     public static void printColumn(int[][] matrix, int col) {
         for (int[] arr : matrix) {
-            if (0 <= col && col < arr.length) {
-                System.out.printf("%4d", arr[col]);
-            }
+            System.out.printf("%4d", arr[col]);
         }
         System.out.println();
     }

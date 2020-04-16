@@ -20,7 +20,7 @@ public class Main {
         k = getPositiveInt();
 
         if (k <= height) {
-            System.out.printf("Row №%d:%n", k);
+            System.out.printf("Row %d:%n", k);
             print(matrix[k - 1]);
         } else {
             System.out.println("Out of bound");
@@ -29,24 +29,16 @@ public class Main {
         p = getPositiveInt();
 
         if (p <= width) {
-            System.out.printf("Column №%d:%n", p);
-            part02.task01.Main.printColumn(matrix, p - 1);
+            System.out.printf("Column %d:%n", p);
+            printColumn(matrix, p - 1);
         } else {
             System.out.println("Out of bound");
         }
     }
 
     private static void printColumn(int[][] matrix, int col) {
-        if (0 <= col && col < matrix[0].length) {
-            for (int[] arr : matrix) {
-                System.out.printf("%3d ", arr[col]);
-            }
-        }
-    }
-
-    private static void printRow(int[][] matrix, int row) {
-        if (0 <= row && row < matrix.length) {
-            print(matrix[row]);
+        for (int[] arr : matrix) {
+            System.out.printf("%4d", arr[col]);
         }
     }
 }

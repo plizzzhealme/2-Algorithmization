@@ -19,9 +19,9 @@ public class Main {
     private static int[][] buildMatrix(int size) {
         int[][] matrix = new int[size][size];
 
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size - i; j++) {
-                matrix[i][j] = i + 1;
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size - row; col++) {
+                matrix[row][col] = row + 1;
             }
         }
         return matrix;

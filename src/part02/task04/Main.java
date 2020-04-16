@@ -19,10 +19,10 @@ public class Main {
     private static int[][] buildMatrix(int size) {
         int[][] matrix = new int[size][size];
 
-        for (int i = 1; i < size; i += 2) {
-            for (int j = 0; j < size; j++) {
-                matrix[i - 1][j] = j + 1;
-                matrix[i][j] = size - j;
+        for (int row = 1; row < size; row += 2) {
+            for (int col = 0; col < size; col++) {
+                matrix[row - 1][col] = col + 1;
+                matrix[row][col] = size - col;
             }
         }
         return matrix;

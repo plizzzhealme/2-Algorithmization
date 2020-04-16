@@ -22,7 +22,7 @@ public class Main {
         int size = matrix.length;
 
         for (int i = 0; i < size; i++) {
-            System.out.printf("%3d ", matrix[i][i]);
+            System.out.printf("%4d", matrix[i][i]);
         }
         System.out.println();
     }
@@ -31,7 +31,7 @@ public class Main {
         int size = matrix.length;
 
         for (int i = 0; i < size; i++) {
-            System.out.printf("%3d ", matrix[i][size - 1 - i]);
+            System.out.printf("%4d", matrix[i][size - 1 - i]);
         }
         System.out.println();
     }

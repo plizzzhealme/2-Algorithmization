@@ -20,15 +20,15 @@ public class Main {
         int halfSize = size / 2;
         int[][] matrix = new int[size][size];
 
-        for (int i = 0; i < halfSize; i++) {
-            for (int j = i; j < size - i; j++) {
-                matrix[i][j] = 1;
+        for (int row = 0; row < halfSize; row++) {
+            for (int col = row; col < size - row; col++) {
+                matrix[row][col] = 1;
             }
         }
 
-        for (int i = halfSize; i < size; i++) {
-            for (int j = size - i - 1; j < i + 1; j++) {
-                matrix[i][j] = 1;
+        for (int row = halfSize; row < size; row++) {
+            for (int col = size - row - 1; col < row + 1; col++) {
+                matrix[row][col] = 1;
             }
         }
         return matrix;

@@ -4,7 +4,7 @@ import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
-        int maxColumnSumIndex;
+        int maxColumn;
         int height;
         int width;
         int[][] matrix;
@@ -19,20 +19,20 @@ public class Main {
         columnsSums = calcColumnsSums(matrix);
         System.out.println("Columns sums:");
         print(columnsSums);
-        maxColumnSumIndex = findMax(columnsSums);
-        System.out.printf("The largest sum is in the %d column", maxColumnSumIndex + 1);
+        maxColumn = findMax(columnsSums);
+        System.out.printf("The max sum is in the column %d", maxColumn + 1);
     }
 
     private static int[] calcColumnsSums(int[][] matrix) {
         int width = matrix[0].length;
-        int[] columnsSums = new int[width];
+        int[] sums = new int[width];
 
-        for (int i = 0; i < width; i++) {
-            for (int[] arr : matrix) {
-                columnsSums[i] += arr[i];
+        for (int[] arr : matrix) {
+            for (int col = 0; col < width; col++) {
+                sums[col] += arr[col];
             }
         }
-        return columnsSums;
+        return sums;
     }
 
     private static int findMax(int[] arr) {

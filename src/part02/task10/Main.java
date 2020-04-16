@@ -13,10 +13,10 @@ public class Main {
         System.out.println("Initial matrix:");
         print(matrix);
         System.out.println("Positive elements of main diagonal:");
-        printElements(matrix);
+        printPositiveElements(matrix);
     }
 
-    private static void printElements(int[][] matrix) {
+    private static void printPositiveElements(int[][] matrix) {
         int size = matrix.length;
 
         for (int i = 0; i < size; i++) {

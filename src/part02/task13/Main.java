@@ -25,54 +25,37 @@ public class Main {
     private static void sortColumns(int[][] matrix) {
         int width = matrix[0].length;
 
-        for (int i = 0; i < width; i++) {
-            sortColumn(matrix, i);
+        for (int col = 0; col < width; col++) {
+            sortColumn(matrix, col);
         }
     }
 
     private static void reverseColumns(int[][] matrix) {
-        int width = matrix[0].length;
-
-        for (int i = 0; i < width; i++) {
-            reverseColumn(matrix, i);
-        }
-    }
-
-    private static void reverseColumn(int[][] matrix, int column) {
         int height = matrix.length;
         int halfHeight = height / 2;
 
-        for (int i = 0; i < halfHeight; i++) {
-            swap(matrix, column, i, height - 1 - i);
+        for (int row = 0; row < halfHeight; row++) {
+            int[] temp = matrix[row];
+            matrix[row] = matrix[height - row - 1];
+            matrix[height - row - 1] = temp;
         }
     }
 
-    private static void sortColumn(int[][] matrix, int index) {
-        int length = matrix.length;
+    private static void sortColumn(int[][] matrix, int col) {
+        int height = matrix.length;
         boolean isSorted = false;
 
         while (!isSorted) {
             isSorted = true;
 
-            for (int i = 0; i < length - 1; i++) {
-                if (matrix[i][index] > matrix[i + 1][index]) {
-                    swap(matrix, index, i, i + 1);
+            for (int row = 0; row < height - 1; row++) {
+                if (matrix[row][col] > matrix[row + 1][col]) {
+                    int temp = matrix[row][col];
+                    matrix[row][col] = matrix[row + 1][col];
+                    matrix[row + 1][col] = temp;
                     isSorted = false;
                 }
             }
-        }
-    }
-
-    private static void swap(int[][] matrix, int col, int row1, int row2) {
-        int height = matrix.length;
-        int width = matrix[0].length;
-
-        if (0 <= col && col < width
-            && 0 <= row1 && row1 < height
-            && 0 <= row2 && row2 < height) {
-            int temp = matrix[row1][col];
-            matrix[row1][col] = matrix[row2][col];
-            matrix[row2][col] = temp;
         }
     }
 }

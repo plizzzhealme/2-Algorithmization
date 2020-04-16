@@ -1,13 +1,8 @@
 package part02.task14;
 
-import java.util.Random;
-
-import static interaction.Interaction.getPositiveInt;
-import static interaction.Interaction.print;
+import static interaction.Interaction.*;
 
 public class Main {
-    private static final Random r = new Random();
-
     public static void main(String[] args) {
         int height;
         int width;
@@ -28,38 +23,38 @@ public class Main {
     private static int[][] buildMatrix(int height, int width) {
         int[][] matrix = new int[height][width];
 
-        for (int i = 0; i < width; i++) {
-            fillColumn(matrix, i);
+        for (int col = 0; col < width; col++) {
+            fillColumn(matrix, col);
         }
         return matrix;
     }
 
-    private static void fillColumn(int[][] matrix, int column) {
+    private static void fillColumn(int[][] matrix, int col) {
         int height = matrix.length;
         int count = 0;
-        int maxOneCount = column + 1;
-        int maxZeroCount = height - column - 1;
+        int maxOneCount = col + 1;
+        int maxZeroCount = height - col - 1;
         int halfWidth = matrix[0].length / 2;
 
-        if (column < halfWidth) {
+        if (col < halfWidth) {
             while (count < maxOneCount) {
-                int index = r.nextInt(height);
+                int index = getRandomInt(height);
 
-                if (matrix[index][column] != 1) {
-                    matrix[index][column] = 1;
+                if (matrix[index][col] != 1) {
+                    matrix[index][col] = 1;
                     count++;
                 }
             }
         } else {
             for (int[] arr : matrix) {
-                arr[column] = 1;
+                arr[col] = 1;
             }
 
             while (count < maxZeroCount) {
-                int index = r.nextInt(height);
+                int index = getRandomInt(height);
 
-                if (matrix[index][column] != 0) {
-                    matrix[index][column] = 0;
+                if (matrix[index][col] != 0) {
+                    matrix[index][col] = 0;
                     count++;
                 }
             }

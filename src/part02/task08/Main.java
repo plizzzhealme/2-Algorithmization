@@ -29,16 +29,11 @@ public class Main {
         print(matrix);
     }
 
-    private static void swapColumns(int[][] matrix, int m, int n) {
-        int height = matrix.length;
-        int width = matrix[0].length;
-
-        if (m < width && n < width) {
-            for (int i = 0; i < height; i++) {
-                int temp = matrix[i][m];
-                matrix[i][m] = matrix[i][n];
-                matrix[i][n] = temp;
-            }
+    private static void swapColumns(int[][] matrix, int col1, int col2) {
+        for (int[] arr : matrix) {
+            int temp = arr[col1];
+            arr[col1] = arr[col2];
+            arr[col2] = temp;
         }
     }
 }

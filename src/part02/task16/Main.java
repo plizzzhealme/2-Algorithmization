@@ -45,12 +45,12 @@ public class Main {
         int peakIndex = halfSize / 2;
         int[][] miniMagic = buildOddMagicSquare(halfSize);
 
-        for (int i = 0; i < halfSize; i++) {
-            for (int j = 0; j < halfSize; j++) {
-                magicSquare[i][j] = miniMagic[i][j];
-                magicSquare[i + halfSize][j + halfSize] = miniMagic[i][j] + halfSize * halfSize;
-                magicSquare[i][j + halfSize] = miniMagic[i][j] + 2 * halfSize * halfSize;
-                magicSquare[i + halfSize][j] = miniMagic[i][j] + 3 * halfSize * halfSize;
+        for (int row = 0; row < halfSize; row++) {
+            for (int col = 0; col < halfSize; col++) {
+                magicSquare[row][col] = miniMagic[row][col];
+                magicSquare[row + halfSize][col + halfSize] = miniMagic[row][col] + halfSize * halfSize;
+                magicSquare[row][col + halfSize] = miniMagic[row][col] + 2 * halfSize * halfSize;
+                magicSquare[row + halfSize][col] = miniMagic[row][col] + 3 * halfSize * halfSize;
             }
         }
 
@@ -71,34 +71,34 @@ public class Main {
         return magicSquare;
     }
 
-    private static void swap(int[][] matrix, int i1, int j1, int i2, int j2) {
-        int temp = matrix[i1][j1];
-        matrix[i1][j1] = matrix[i2][j2];
-        matrix[i2][j2] = temp;
+    private static void swap(int[][] matrix, int row1, int col1, int row2, int col2) {
+        int temp = matrix[row1][col1];
+        matrix[row1][col1] = matrix[row2][col2];
+        matrix[row2][col2] = temp;
     }
 
     private static int[][] buildOddMagicSquare(int size) {
         int[][] magicSquare = new int[size][size];
         int max = size * size;
-        int i = 0;
-        int j = size / 2;
+        int row = 0;
+        int col = size / 2;
 
         for (int n = 1; n <= max; n++) {
-            magicSquare[i][j] = n;
+            magicSquare[row][col] = n;
 
-            if (j == size - 1 && i == 0) {
-                i++;
-            } else if (i == 0) {
-                i = size - 1;
-                j++;
-            } else if (j == size - 1) {
-                i--;
-                j = 0;
-            } else if (magicSquare[i - 1][j + 1] != 0) {
-                i++;
+            if (col == size - 1 && row == 0) {
+                row++;
+            } else if (row == 0) {
+                row = size - 1;
+                col++;
+            } else if (col == size - 1) {
+                row--;
+                col = 0;
+            } else if (magicSquare[row - 1][col + 1] != 0) {
+                row++;
             } else {
-                i--;
-                j++;
+                row--;
+                col++;
             }
         }
         return magicSquare;
@@ -111,18 +111,18 @@ public class Main {
         int min = 1;
         int max = size * size;
 
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                if (i < quarterSize && quarterSize <= j && j < size - quarterSize) {
-                    magicSquare[i][j] = min;
-                } else if (i >= size - quarterSize && quarterSize <= j && j < size - quarterSize) {
-                    magicSquare[i][j] = min;
-                } else if (quarterSize <= i && i < size - quarterSize && j < quarterSize) {
-                    magicSquare[i][j] = min;
-                } else if (quarterSize <= i && i < size - quarterSize && j >= size - quarterSize) {
-                    magicSquare[i][j] = min;
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size; col++) {
+                if (row < quarterSize && quarterSize <= col && col < size - quarterSize) {
+                    magicSquare[row][col] = min;
+                } else if (row >= size - quarterSize && quarterSize <= col && col < size - quarterSize) {
+                    magicSquare[row][col] = min;
+                } else if (quarterSize <= row && row < size - quarterSize && col < quarterSize) {
+                    magicSquare[row][col] = min;
+                } else if (quarterSize <= row && row < size - quarterSize && col >= size - quarterSize) {
+                    magicSquare[row][col] = min;
                 } else {
-                    magicSquare[i][j] = max;
+                    magicSquare[row][col] = max;
                 }
                 min++;
                 max--;

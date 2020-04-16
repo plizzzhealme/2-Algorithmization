@@ -56,12 +56,8 @@ public class Main {
     }
 
     private static void swap(int[] arr, int i, int j) {
-        int length = arr.length;
-
-        if (0 <= i && i < length && 0 <= j && j < length) {
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-        }
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
 }

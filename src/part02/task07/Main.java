@@ -22,12 +22,16 @@ public class Main {
     private static double[][] buildMatrix(int size) {
         double[][] matrix = new double[size][size];
 
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                matrix[i][j] = Math.sin(((i + 1.) * (i + 1) - (j + 1) * (j + 1)) / size);
+        for (int row = 0; row < size; row++) {
+            for (int col = 0; col < size; col++) {
+                matrix[row][col] = calcValue(row + 1, col + 1, size);
             }
         }
         return matrix;
+    }
+
+    private static double calcValue(int i, int j, int n) {
+        return Math.sin((double) (i * i - j * j) / n);
     }
 
     private static int countPositiveElements(double[][] matrix) {
