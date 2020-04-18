@@ -125,6 +125,19 @@ public class Interaction {
         return in.nextDouble();
     }
 
+    public static double getPositiveDouble() {
+        double d;
+
+        do {
+            d = getDouble();
+
+            if (d <= 0) {
+                System.out.println("Enter a positive real number");
+            }
+        } while (d <= 0);
+        return d;
+    }
+
     public static int getRandomInt(int bound) {
         return r.nextInt(bound);
     }

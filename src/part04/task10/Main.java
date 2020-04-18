@@ -5,29 +5,34 @@ import static interaction.Interaction.print;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Enter natural number");
-        int n = getPositiveInt();
-        print(convertNumberToArray(n));
+        int n;
+        int[] number;
+
+        System.out.println("Enter positive integer");
+        n = getPositiveInt();
+        number = toArray(n);
+        print(number);
     }
 
-    private static int[] convertNumberToArray(int n) {
-        int length = calculateNumberLength(n);
+    private static int[] toArray(int n) {
+        int length = calcNumberLength(n);
         int[] number = new int[length];
-        int remainder = n;
+        int temp = Math.abs(n);
 
         for (int i = length - 1; i >= 0; i--) {
-            number[i] = remainder % 10;
-            remainder /= 10;
+            number[i] = temp % 10;
+            temp /= 10;
         }
         return number;
     }
 
-    public static int calculateNumberLength(int n) {
+    public static int calcNumberLength(int n) {
+        int abs = Math.abs(n);
         int[] sizeTable = {9, 99, 999, 9999, 99999, 999999, 9999999,
                 99999999, 999999999, Integer.MAX_VALUE};
 
         for (int i = 0; ; i++) {
-            if (n <= sizeTable[i]) {
+            if (abs <= sizeTable[i]) {
                 return i + 1;
             }
         }

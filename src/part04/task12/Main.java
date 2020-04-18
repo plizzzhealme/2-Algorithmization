@@ -5,44 +5,50 @@ import static interaction.Interaction.print;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Enter 2 natural numbers");
-        int k = getPositiveInt();
-        int n = getPositiveInt();
-        System.out.println("Numbers from 1 to " + n + " with one incredible property:");
-        print(buildThisStupidArray(k, n));
+        int k;
+        int n;
+        int[] arr;
+
+        System.out.println("Enter 2 positive integers");
+        k = getPositiveInt();
+        n = getPositiveInt();
+        System.out.printf("Numbers from 1 to %d with digits sum = %d:%n", n, k);
+        arr = buildArray(k, n);
+        print(arr);
     }
 
-    private static int[] buildThisStupidArray(int k, int n) {
-        int length = countStupidNumbers(k, n);
-        int[] array = new int[length];
+    private static int[] buildArray(int k, int n) {
+        int length = calcLength(k, n);
+        int[] arr = new int[length];
         int index = 0;
 
         for (int i = 1; i <= n; i++) {
-            if (calculateDigitsSum(i) == k) {
-                array[index] = i;
+            if (calcDigitsSum(i) == k) {
+                arr[index] = i;
                 index++;
             }
         }
-        return array;
+        return arr;
     }
 
-    private static int countStupidNumbers(int k, int n) {
+    private static int calcLength(int k, int n) {
         int count = 0;
 
         for (int i = 1; i <= n; i++) {
-            if (calculateDigitsSum(i) == k) {
+            if (calcDigitsSum(i) == k) {
                 count++;
             }
         }
         return count;
     }
 
-    public static int calculateDigitsSum(int n) {
+    public static int calcDigitsSum(int n) {
+        int temp = Math.abs(n);
         int sum = 0;
 
-        while (n > 0) {
-            sum += n % 10;
-            n /= 10;
+        while (temp > 0) {
+            sum += temp % 10;
+            temp /= 10;
         }
         return sum;
     }

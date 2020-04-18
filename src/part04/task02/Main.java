@@ -4,27 +4,29 @@ import static interaction.Interaction.getPositiveInt;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Enter 4 integers");
-        int length = 4;
-        int[] numbers = new int[4];
+        int n = 4;
+        int[] numbers = new int[n];
+        int gcd;
 
-        for (int i = 0; i < length; i++) {
+        System.out.println("Enter 4 integers");
+
+        for (int i = 0; i < n; i++) {
             numbers[i] = getPositiveInt();
         }
-        int gcd = calculateMultipleGcd(numbers);
+        gcd = calculateMultipleGcd(numbers);
         System.out.println("Greatest common divisor: " + gcd);
     }
 
-    /*
-    uses the method from the previous task
-     */
     public static int calculateMultipleGcd(int[] numbers) {
-        int length = numbers.length;
-        int gcd = part04.task01.Main.calculateGcd(numbers[0], numbers[1]);
+        int gcd = 1;
 
-        for (int i = 2; i < length; i++) {
-            gcd = part04.task01.Main.calculateGcd(gcd, numbers[i]);
+        for (int value : numbers) {
+            gcd = calcGcd(gcd, value);
         }
         return gcd;
+    }
+
+    private static int calcGcd(int a, int b) {
+        return b == 0 ? a : calcGcd(b, a % b);
     }
 }

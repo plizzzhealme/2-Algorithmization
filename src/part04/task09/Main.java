@@ -1,69 +1,63 @@
 package part04.task09;
 
-import static interaction.Interaction.getPositiveInt;
+import static interaction.Interaction.getPositiveDouble;
 
 public class Main {
     public static void main(String[] args) {
+        double x;
+        double y;
+        double z;
+        double t;
+        double d;
+        double xydArea;
+        double ztdArea;
+        double convexArea;
+        double concaveArea;
+
         System.out.println("Enter the lengths of the sides");
-        int x = getPositiveInt();
-        int y = getPositiveInt();
-        int z = getPositiveInt();
-        int t = getPositiveInt();
-        double s = calculateArea(x, y, z, t);
+        x = getPositiveDouble();
+        y = getPositiveDouble();
+        z = getPositiveDouble();
+        t = getPositiveDouble();
+        d = calcHypotenuse(x, y);
 
-        if (s == -1) {
-            System.out.println("Quadrilateral with given sides doesn't exist");
+        if (z + t > d) {
+            xydArea = calcTriangleArea(x, y, d);
+            ztdArea = calcTriangleArea(z, t, d);
+            convexArea = xydArea + ztdArea;
+            System.out.printf("For convex quadrilateral: S = %.2f%n", convexArea);
+
+            if (canBeConcave(x, y, z, t, d)) {
+                concaveArea = xydArea - ztdArea;
+                System.out.printf("For concave quadrilateral: S = %.2f%n", concaveArea);
+            } else {
+                System.out.println("Concave quadrilateral doesn't exist");
+            }
         } else {
-            System.out.printf("S = %.3f", s);
+            System.out.println("Such quadrilateral doesn't exist");
         }
+
     }
 
-    /*
-    returns the area or -1 if quadrangle doesn't exist
-     */
-    private static double calculateArea(int x, int y, int z, int t) {
-        double diagonal = calculateHypotenuse(x, y);
-
-        if (checkTriangle(diagonal, z, t)) {
-            return calculateTriangleArea(diagonal, z, t) + calculateRightTriangleArea(x, y);
-        } else {
-            return -1;
-        }
-    }
-
-    /*
-    calculates the length of hypotenuse if legs are given
-     */
-    private static double calculateHypotenuse(double leg1, double leg2) {
+    private static double calcHypotenuse(double leg1, double leg2) {
         return Math.sqrt(leg1 * leg1 + leg2 * leg2);
     }
 
-    /*
-    checks whether triangle with given sides is valid or not
-     */
-    private static boolean checkTriangle(double a, double b, double c) {
-        return a + b > c && a + c > b && b + c > a;
-    }
-
-    /*
-    calculates right-angled triangle area with given legs
-     */
-    private static double calculateRightTriangleArea(double leg1, double leg2) {
-        return leg1 * leg2 / 2;
-    }
-
-    /*
-    calculates the area of the triangle with given sides
-     */
-    private static double calculateTriangleArea(double a, double b, double c) {
-        double p = calculateHalfPerimeter(a, b, c);
+    private static double calcTriangleArea(double a, double b, double c) {
+        double p = (a + b + c) / 2;
         return Math.sqrt(p * (p - a) * (p - b) * (p - c));
     }
 
-    /*
-    calculates half perimeter of triangle
-     */
-    private static double calculateHalfPerimeter(double a, double b, double c) {
-        return (a + b + c) / 2;
+    private static boolean canBeConcave(double x, double y, double z, double t, double d) {
+        double xd = calcAngle(y, x, d);
+        double yd = calcAngle(x, y, d);
+        double zd = calcAngle(t, z, d);
+        double td = calcAngle(z, t, d);
+
+        return zd < xd && td < yd || zd < yd && td < xd;
+    }
+
+    private static double calcAngle(double a, double b, double c) {
+        return Math.acos((b * b + c * c - a * a) / (2 * b * c)) * 180 / Math.PI;
     }
 }

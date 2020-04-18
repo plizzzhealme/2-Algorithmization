@@ -4,26 +4,27 @@ import static interaction.Interaction.*;
 
 public class Main {
     public static void main(String[] args) {
+        int n;
+        int[] numbers;
+        int secondMax;
+
         System.out.println("Enter the number of numbers o_O");
-        int n = getInt();
-        int[] numbers = buildPositiveIntsArray(n);
+        n = getInt();
+        numbers = buildPositiveIntsArray(n);
         System.out.println("Numbers:");
         print(numbers);
-        System.out.println("The second largest number is " + findSecondLargestNumber(numbers));
+        secondMax = findSecondLargestNumber(numbers);
+        System.out.printf("The second largest number is %d", secondMax);
     }
 
-    /*
-    returns the second largest number in the array,
-    if all numbers are equal returns this single value
-     */
     private static int findSecondLargestNumber(int[] numbers) {
         int n = numbers.length;
+        int max = Integer.MIN_VALUE;
+        int secondMax = Integer.MIN_VALUE;
 
         if (n == 1) {
             return numbers[0];
         }
-        int max = Integer.MIN_VALUE;
-        int secondMax = Integer.MIN_VALUE;
 
         for (int i : numbers) {
             if (max < i) {

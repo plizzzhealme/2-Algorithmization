@@ -4,33 +4,35 @@ import static interaction.Interaction.getPositiveInt;
 
 public class Main {
     public static void main(String[] args) {
+        int length;
+
         System.out.println("Enter number's length");
-        int length = getPositiveInt();
+        length = getPositiveInt();
 
-        if (length > 9 || length < 1) {
+        if (length <= 9) {
+            printNumbers(length);
+        } else {
             System.out.println("Empty set");
-        } else {
-            int n = calculateMin(length);
-            int[] number = convertNumberToArray(n, length);
-            System.out.println(n);
-
-            while (hasNextSet(number)) {
-                getNextSet(number);
-                n = convertArrayToNumber(number);
-                System.out.println(n);
-            }
         }
     }
 
-    private static int calculateMin(int length) {
-        if (length == 1) {
-            return 1;
-        } else {
-            return 10 * calculateMin(length - 1) + length;
+    private static void printNumbers(int length) {
+        int n = calcFirstNumber(length);
+        int[] number = toArray(n, length);
+
+        System.out.println(n);
+
+        while (hasNextSet(number)) {
+            changeSet(number);
+            System.out.println(toInt(number));
         }
     }
 
-    private static int[] convertNumberToArray(int n, int length) {
+    private static int calcFirstNumber(int length) {
+        return length == 1 ? 1 : (10 * calcFirstNumber(length - 1) + length);
+    }
+
+    private static int[] toArray(int n, int length) {
         int[] number = new int[length];
 
         for (int i = length - 1; i >= 0; i--) {
@@ -40,7 +42,7 @@ public class Main {
         return number;
     }
 
-    private static int convertArrayToNumber(int[] number) {
+    private static int toInt(int[] number) {
         int l = number.length;
         int n = 0;
 
@@ -52,24 +54,24 @@ public class Main {
     }
 
     private static boolean hasNextSet(int[] number) {
-        return number[0] < 10 - number.length;
+        return number[0] < (10 - number.length);
     }
 
-    private static void getNextSet(int[] number) {
-        int l = number.length;
-        boolean changed = false;
-        int i = l - 1;
+    private static void changeSet(int[] number) {
+        int length = number.length;
+        boolean isChanged = false;
+        int i = length - 1;
 
-        while (!changed && i >= 0) {
-            int maxValue = 10 - l + i;
+        while (!isChanged && i >= 0) {
+            int maxValue = 10 - length + i;
 
             if (number[i] < maxValue) {
                 number[i]++;
 
-                for (int j = i + 1; j < l; j++) {
+                for (int j = i + 1; j < length; j++) {
                     number[j] = number[j - 1] + 1;
                 }
-                changed = true;
+                isChanged = true;
             }
             i--;
         }

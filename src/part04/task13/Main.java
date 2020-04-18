@@ -4,28 +4,25 @@ import static interaction.Interaction.getPositiveInt;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Enter initial number");
-        int n = getPositiveInt();
-        System.out.println("Your interval is [" + n + ";" + 2 * n + "]");
-        System.out.println("Twin primes:");
-        printTwinPrimes(n);
+        int from;
+
+        System.out.println("Enter the first number");
+        from = getPositiveInt();
+        System.out.printf("Twin primes in the interval [%d;%d]%n", from, from * 2);
+        printTwinPrimes(from);
     }
 
-    /*
-    Prints twin primes in [n;2n] interval
-    Wikipedia says, that twin primes except 3 and 5 equal 6n +- 1
-     */
     private static void printTwinPrimes(int n) {
         if (n == 3) {
             System.out.println("3 5");
         } else {
-            int low = n + 1;
-            low = low % 6 == 0 ? low : (low / 6 + 1) * 6;
+            int low = ((n + 1) % 6 == 0) ? (n + 1) : ((n + 1) / 6 * 6 + 6);
             int high = 2 * n - 1;
+            int twinStep = 6;
 
-            for (int i = low; i < high; i += 6) {
+            for (int i = low; i < high; i += twinStep) {
                 if (isPrime(i - 1) && isPrime(i + 1)) {
-                    System.out.println((i - 1) + " " + (i + 1));
+                    System.out.printf("%d %d%n", i - 1, i + 1);
                 }
             }
         }

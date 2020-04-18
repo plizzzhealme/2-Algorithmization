@@ -4,27 +4,28 @@ import static interaction.Interaction.getPositiveInt;
 
 public class Main {
     public static void main(String[] args) {
+        int length;
+        long oddNumbersSum;
+        int evenDigitsSum;
+
         System.out.println("Enter number's length");
-        int length = getPositiveInt();
-        long oddSum = calculateOddSum(length);
-        System.out.println("Odd sum: " + oddSum);
-        System.out.println("Even sum: " + calculateEvenDigitsSum(oddSum));
+        length = getPositiveInt();
+        oddNumbersSum = calcOddSum(length);
+        evenDigitsSum = calcEvenDigitsSum(oddNumbersSum);
+        System.out.printf("Odd sum = %d%n", oddNumbersSum);
+        System.out.printf("Even sum = %d", evenDigitsSum);
     }
 
-    private static long calculateOddSum(int length) {
-        return (long) Math.pow(5, length) * calculateAverageValue(length);
-    }
-
-    private static int calculateAverageValue(int length) {
-        int result = 0;
+    private static long calcOddSum(int length) {
+        int average = 0;
 
         for (int i = 0; i < length; i++) {
-            result += 5 * Math.pow(10, i);
+            average += 5 * Math.pow(10, i);
         }
-        return result;
+        return (long) Math.pow(5, length) * average;
     }
 
-    private static int calculateEvenDigitsSum(long n) {
+    private static int calcEvenDigitsSum(long n) {
         int sum = 0;
 
         while (n > 0) {
