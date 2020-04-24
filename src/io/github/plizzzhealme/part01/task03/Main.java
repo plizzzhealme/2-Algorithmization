@@ -2,6 +2,9 @@ package io.github.plizzzhealme.part01.task03;
 
 import static io.github.plizzzhealme.interaction.Interaction.*;
 
+/*
+Дан массив действительных чисел. Подсчитать количество отрицательных, положительных и нулевых элементов
+ */
 public class Main {
     public static void main(String[] args) {
         int length;
@@ -9,9 +12,12 @@ public class Main {
 
         System.out.println("Enter array length");
         length = getPositiveInt();
+
         arr = buildDoublesArray(length);
+
         System.out.println("Initial array:");
         print(arr);
+
         printSignInfo(arr);
     }
 

@@ -2,6 +2,9 @@ package io.github.plizzzhealme.part01.task08;
 
 import static io.github.plizzzhealme.interaction.Interaction.*;
 
+/*
+Дан массив целых чисел. Образовать новый, выбросив элементы равные минимальному
+ */
 public class Main {
     public static void main(String[] args) {
         int length;
@@ -10,10 +13,14 @@ public class Main {
 
         System.out.println("Enter array length");
         length = getPositiveInt();
+
         arr = buildIntsArray(length);
+
         System.out.println("Initial array:");
         print(arr);
+
         result = removeMinElements(arr);
+
         System.out.println("Final array:");
         print(result);
     }

@@ -2,6 +2,9 @@ package io.github.plizzzhealme.part01.task06;
 
 import static io.github.plizzzhealme.interaction.Interaction.*;
 
+/*
+Дан массив вещественных чисел. Вычислить сумму тех, порядковые номера которых - простые числа
+ */
 public class Main {
     public static void main(String[] args) {
         int length;
@@ -10,17 +13,23 @@ public class Main {
 
         System.out.println("Enter array length");
         length = getPositiveInt();
+
         arr = buildDoublesArray(length);
+
         System.out.println("Initial array:");
         print(arr);
+
         sum = calcPrimeIndexesSum(arr);
+
         System.out.printf("Prime indexes sum = %.2f", sum);
     }
 
     private static double calcPrimeIndexesSum(double[] arr) {
         int length = arr.length;
-        boolean[] isPrime = buildPrimesTable(length);
+        boolean[] isPrime;
         double sum = 0;
+
+        isPrime = buildPrimesTable(length);
 
         for (int i = 0; i < length; i++) {
             if (isPrime[i]) {

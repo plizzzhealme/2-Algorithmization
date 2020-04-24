@@ -2,6 +2,9 @@ package io.github.plizzzhealme.part01.task07;
 
 import static io.github.plizzzhealme.interaction.Interaction.*;
 
+/*
+Дан массив действительных чисел. Найти max(a_1+a_2n,a_2+a_2n-1,...,a_n+a_n+1)
+ */
 public class Main {
     public static void main(String[] args) {
         int halfLength;
@@ -11,23 +14,26 @@ public class Main {
 
         System.out.println("Enter half of an array length");
         halfLength = getPositiveInt();
+
         length = halfLength * 2;
         arr = buildDoublesArray(length);
+
         System.out.println("Initial array:");
         print(arr);
-        maxPairSum = findMaxPairSum(arr);
+
+        maxPairSum = findMaxSum(arr);
+
         System.out.printf("Max pair sum = %.2f", maxPairSum);
     }
 
-    private static double findMaxPairSum(double[] arr) {
+    private static double findMaxSum(double[] arr) {
         int length = arr.length;
         int halfLength = length / 2;
-        double maxPairSum = arr[0] + arr[length - 1];
+        double max = arr[0] + arr[length - 1];
 
         for (int i = 1; i < halfLength; i++) {
-            double sum = arr[i] + arr[length - 1 - i];
-            maxPairSum = Math.max(maxPairSum, sum);
+            max = Math.max(max, arr[i] + arr[length - i - 1]);
         }
-        return maxPairSum;
+        return max;
     }
 }

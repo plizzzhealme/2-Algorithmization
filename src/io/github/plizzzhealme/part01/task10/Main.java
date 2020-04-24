@@ -2,6 +2,10 @@ package io.github.plizzzhealme.part01.task10;
 
 import static io.github.plizzzhealme.interaction.Interaction.*;
 
+/*
+Дан массив целых чисел. Сжать его, выбросив каждый второй элемент.
+Свободное место заполнить нулями
+ */
 public class Main {
     public static void main(String[] args) {
         int length;
@@ -9,10 +13,14 @@ public class Main {
 
         System.out.println("Enter array length");
         length = getPositiveInt();
+
         arr = buildIntsArray(length);
+
         System.out.println("Initial array:");
         print(arr);
+
         compress(arr);
+
         System.out.println("Final array:");
         print(arr);
     }
