@@ -2,6 +2,9 @@ package io.github.plizzzhealme.part02.task01;
 
 import static io.github.plizzzhealme.interaction.Interaction.*;
 
+/*
+Вывести нечетные стобцы, у которых первый элемент больше последнего
+ */
 public class Main {
     public static void main(String[] args) {
         int height;
@@ -11,18 +14,24 @@ public class Main {
         System.out.println("Enter matrix height and width");
         height = getPositiveInt();
         width = getPositiveInt();
+
         matrix = buildIntsMatrix(height, width);
+
         System.out.println("Initial matrix:");
         print(matrix);
-        System.out.println("Odd columns with first element bigger than the last one:");
-        printColumns(matrix);
+
+        System.out.println("Odd columns with first element greater than the last one:");
+        printMatchingColumns(matrix);
     }
 
-    private static void printColumns(int[][] matrix) {
+    private static void printMatchingColumns(int[][] matrix) {
+        int height = matrix.length;
         int width = matrix[0].length;
 
         for (int col = 0; col < width; col += 2) {
-            printColumn(matrix, col);
+            if (matrix[0][col] > matrix[height - 1][col]) {
+                printColumn(matrix, col);
+            }
         }
     }
 

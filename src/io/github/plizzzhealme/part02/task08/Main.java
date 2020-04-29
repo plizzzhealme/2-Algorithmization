@@ -2,6 +2,9 @@ package io.github.plizzzhealme.part02.task08;
 
 import static io.github.plizzzhealme.interaction.Interaction.*;
 
+/*
+Поменять местами 2 столбца
+ */
 public class Main {
     public static void main(String[] args) {
         int m;
@@ -13,9 +16,12 @@ public class Main {
         System.out.println("Enter matrix height and width");
         height = getPositiveInt();
         width = getPositiveInt();
+
         matrix = buildIntsMatrix(height, width);
+
         System.out.println("Initial matrix:");
         print(matrix);
+
         System.out.println("Enter columns to swap");
         m = getPositiveInt();
         n = getPositiveInt();
@@ -23,8 +29,9 @@ public class Main {
         if (m <= width && n <= width) {
             swapColumns(matrix, m - 1, n - 1);
         } else {
-            System.out.println("Out of bound");
+            System.out.println("Column index is out of bounds");
         }
+
         System.out.println("Final matrix:");
         print(matrix);
     }

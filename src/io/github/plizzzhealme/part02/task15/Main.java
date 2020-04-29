@@ -12,12 +12,16 @@ public class Main {
         System.out.println("Enter matrix height and width");
         height = getPositiveInt();
         width = getPositiveInt();
+
         matrix = buildIntsMatrix(height, width);
+
         System.out.println("Initial matrix:");
         print(matrix);
+
         max = findMax(matrix);
-        System.out.printf("Max = %d%n", max);
         replace(matrix, max);
+
+        System.out.printf("Max = %d%n", max);
         System.out.println("Final matrix:");
         print(matrix);
     }

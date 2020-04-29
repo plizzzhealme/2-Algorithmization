@@ -2,24 +2,34 @@ package io.github.plizzzhealme.part02.task09;
 
 import static io.github.plizzzhealme.interaction.Interaction.*;
 
+/*
+Дана матрица неотрицательных чисел. Посчитать сумму элементов в каждом столбце.
+Определить, какой столбец содержит максимальную сумму
+ */
 public class Main {
     public static void main(String[] args) {
         int maxColumn;
         int height;
         int width;
         int[][] matrix;
-        int[] columnsSums;
+        int[] sums;
 
         System.out.println("Enter matrix height and width");
         height = getPositiveInt();
         width = getPositiveInt();
+
         matrix = buildNotNegativeIntsMatrix(height, width);
+
         System.out.println("Initial matrix:");
         print(matrix);
-        columnsSums = calcColumnsSums(matrix);
+
+        sums = calcColumnsSums(matrix);
+
         System.out.println("Columns sums:");
-        print(columnsSums);
-        maxColumn = findMax(columnsSums);
+        print(sums);
+
+        maxColumn = findMax(sums);
+
         System.out.printf("The max sum is in the column %d", maxColumn + 1);
     }
 

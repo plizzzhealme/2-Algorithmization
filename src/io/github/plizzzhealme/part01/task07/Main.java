@@ -7,15 +7,13 @@ import static io.github.plizzzhealme.interaction.Interaction.*;
  */
 public class Main {
     public static void main(String[] args) {
-        int halfLength;
         int length;
         double[] arr;
         double maxPairSum;
 
-        System.out.println("Enter half of an array length");
-        halfLength = getPositiveInt();
+        System.out.println("Enter array length");
+        length = getEvenInt();
 
-        length = halfLength * 2;
         arr = buildDoublesArray(length);
 
         System.out.println("Initial array:");

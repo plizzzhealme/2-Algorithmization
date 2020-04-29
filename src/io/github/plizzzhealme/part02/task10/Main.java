@@ -2,6 +2,9 @@ package io.github.plizzzhealme.part02.task10;
 
 import static io.github.plizzzhealme.interaction.Interaction.*;
 
+/*
+Найти положительные элементы главной диагонали квадратной матрицы
+ */
 public class Main {
     public static void main(String[] args) {
         int size;
@@ -9,9 +12,12 @@ public class Main {
 
         System.out.println("Enter matrix size");
         size = getPositiveInt();
+
         matrix = buildIntsMatrix(size, size);
+
         System.out.println("Initial matrix:");
         print(matrix);
+
         System.out.println("Positive elements of main diagonal:");
         printPositiveElements(matrix);
     }

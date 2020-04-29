@@ -2,6 +2,9 @@ package io.github.plizzzhealme.part02.task13;
 
 import static io.github.plizzzhealme.interaction.Interaction.*;
 
+/*
+Отсортировать столбцы матрицы по возрастанию и убыванию
+ */
 public class Main {
     public static void main(String[] args) {
         int height;
@@ -11,13 +14,19 @@ public class Main {
         System.out.println("Enter matrix height and width");
         height = getPositiveInt();
         width = getPositiveInt();
+
         matrix = buildIntsMatrix(height, width);
+
         System.out.println("Initial matrix:");
         print(matrix);
+
         sortColumns(matrix);
+
         System.out.println("Ascending order:");
         print(matrix);
+
         reverseColumns(matrix);
+
         System.out.println("Descending order:");
         print(matrix);
     }
@@ -43,17 +52,17 @@ public class Main {
 
     private static void sortColumn(int[][] matrix, int col) {
         int height = matrix.length;
-        boolean isSorted = false;
+        boolean sorted = false;
 
-        while (!isSorted) {
-            isSorted = true;
+        while (!sorted) {
+            sorted = true;
 
             for (int row = 0; row < height - 1; row++) {
                 if (matrix[row][col] > matrix[row + 1][col]) {
                     int temp = matrix[row][col];
                     matrix[row][col] = matrix[row + 1][col];
                     matrix[row + 1][col] = temp;
-                    isSorted = false;
+                    sorted = false;
                 }
             }
         }

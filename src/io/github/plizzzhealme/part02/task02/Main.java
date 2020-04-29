@@ -2,6 +2,9 @@ package io.github.plizzzhealme.part02.task02;
 
 import static io.github.plizzzhealme.interaction.Interaction.*;
 
+/*
+Дана квадратная матрица. Вывести элементы, стоящие на диагонали
+ */
 public class Main {
     public static void main(String[] args) {
         int size;
@@ -9,11 +12,15 @@ public class Main {
 
         System.out.println("Enter matrix size");
         size = getPositiveInt();
+
         matrix = buildSquareMatrix(size);
+
         System.out.println("Initial matrix:");
         print(matrix);
+
         System.out.println("Main diagonal:");
         printDiagonal(matrix);
+
         System.out.println("Antidiagonal:");
         printAntidiagonal(matrix);
     }
@@ -31,7 +38,7 @@ public class Main {
         int size = matrix.length;
 
         for (int i = 0; i < size; i++) {
-            System.out.printf("%4d", matrix[i][size - 1 - i]);
+            System.out.printf("%4d", matrix[i][size - i - 1]);
         }
         System.out.println();
     }

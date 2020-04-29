@@ -117,6 +117,19 @@ public class Interaction {
         return n;
     }
 
+    public static int getEvenInt() {
+        int n;
+
+        do {
+            n = getPositiveInt();
+
+            if (n % 2 != 0) {
+                System.out.println("Enter an even number");
+            }
+        } while (n % 2 != 0);
+        return n;
+    }
+
     public static double getDouble() {
         while (!in.hasNextDouble()) {
             in.next();

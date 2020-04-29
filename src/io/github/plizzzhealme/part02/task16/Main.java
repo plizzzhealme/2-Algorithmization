@@ -7,7 +7,6 @@ public class Main {
     public static void main(String[] args) {
         int size;
         int[][] magicSquare;
-        int option;
 
         System.out.println("Enter magic square size");
         size = getPositiveInt();
@@ -15,19 +14,12 @@ public class Main {
         if (size == 2) {
             System.out.println("There is no such magic square");
             return;
-        }
-        option = size % 4;
-
-        switch (option) {
-            case 0:
-                magicSquare = buildDoubleEvenMagicSquare(size);
-                break;
-            case 2:
-                magicSquare = buildEvenMagicSquare(size);
-                break;
-            default:
-                magicSquare = buildOddMagicSquare(size);
-                break;
+        } else if (size % 4 == 0) {
+            magicSquare = buildDoubleEvenMagicSquare(size);
+        } else if (size % 4 == 2) {
+            magicSquare = buildEvenMagicSquare(size);
+        } else {
+            magicSquare = buildOddMagicSquare(size);
         }
 
         if (isMagic(magicSquare)) {

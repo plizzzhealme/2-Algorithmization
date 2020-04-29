@@ -2,6 +2,9 @@ package io.github.plizzzhealme.part02.task03;
 
 import static io.github.plizzzhealme.interaction.Interaction.*;
 
+/*
+Дана матрица. Вывести k-ю строку и p-й столбец
+ */
 public class Main {
     public static void main(String[] args) {
         int k;
@@ -13,9 +16,12 @@ public class Main {
         System.out.println("Enter matrix height and width");
         height = getPositiveInt();
         width = getPositiveInt();
+
         matrix = buildIntsMatrix(height, width);
+
         System.out.println("Initial matrix:");
         print(matrix);
+
         System.out.println("Enter row number");
         k = getPositiveInt();
 
@@ -23,8 +29,9 @@ public class Main {
             System.out.printf("Row %d:%n", k);
             print(matrix[k - 1]);
         } else {
-            System.out.println("Out of bound");
+            System.out.println("Row index is out of bounds");
         }
+
         System.out.println("Enter column number");
         p = getPositiveInt();
 
@@ -32,7 +39,7 @@ public class Main {
             System.out.printf("Column %d:%n", p);
             printColumn(matrix, p - 1);
         } else {
-            System.out.println("Out of bound");
+            System.out.println("Column index is out of bounds");
         }
     }
 
